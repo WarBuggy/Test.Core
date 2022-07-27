@@ -1,0 +1,9 @@
+{
+  "culture": "en",
+  "texts": {
+    "SamplePageMessage": "A sample page for the TestMDM module",
+    "Menu:TetsMDM": "TestMDM",
+    "EnableMDM": "MDM",
+    "EnableDistributor": "Distributor"
+  }
+}

@@ -1,0 +1,142 @@
+version: '3.7'
+
+services:
+  core-web:
+    image: test/core-web:latest
+    container_name: core-web
+    build:
+      context: ../../
+      dockerfile: src/Test.Core.Web/Dockerfile.local
+    environment:
+      - ASPNETCORE_URLS=https://+:443;http://+:80;
+      - Kestrel__Certificates__Default__Path=/root/certificate/localhost.pfx
+      - Kestrel__Certificates__Default__Password=91f91912-5ab0-49df-8166-23377efaf3cc
+      - App__SelfUrl=https://localhost:44353
+      - AuthServer__RequireHttpsMetadata=false
+      - AuthServer__IsContainerizedOnLocalhost=true
+      - AuthServer__MetaAddress=http://core-identity-server
+      - AuthServer__Authority=https://localhost:44334
+      - RemoteServices__Default__BaseUrl=http://core-api
+      - RemoteServices__AbpAccountPublic__BaseUrl=http://core-identity-server
+      - App__MVCPublicUrl=https://localhost:44306
+      - ConnectionStrings__Default=Data Source=sql-server;Initial Catalog=Core;User Id=sa;Password=myPassw0rd;MultipleActiveResultSets=true;Persist Security Info=True;
+      - Redis__Configuration=redis
+    ports:
+      - "44353:443"
+    depends_on:
+      - core-api
+    restart: on-failure
+    volumes:
+      - ./certs:/root/certificate
+    networks:
+      - abp-network
+
+  core-api:
+    image: test/core-api:latest
+    container_name: core-api
+    build:
+      context: ../../
+      dockerfile: src/Test.Core.HttpApi.Host/Dockerfile.local
+    environment:
+      - ASPNETCORE_URLS=https://+:443;http://+:80;
+      - Kestrel__Certificates__Default__Path=/root/certificate/localhost.pfx
+      - Kestrel__Certificates__Default__Password=91f91912-5ab0-49df-8166-23377efaf3cc
+      - App__SelfUrl=https://localhost:44354
+      - AuthServer__RequireHttpsMetadata=false
+      - AuthServer__Authority=http://core-identity-server
+      - App__MVCPublicUrl=https://localhost:44306
+      - ConnectionStrings__Default=Data Source=sql-server;Initial Catalog=Core;User Id=sa;Password=myPassw0rd;MultipleActiveResultSets=true;Persist Security Info=True;
+      - Redis__Configuration=redis
+    ports:
+      - "44354:443"
+    depends_on:
+      sql-server:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: on-failure
+    volumes:
+      - ./certs:/root/certificate
+    networks:
+      - abp-network
+
+  core-identity-server:
+    image: test/core-identityserver:latest
+    container_name: core-identity-server
+    build:
+      context: ../../
+      dockerfile: src/Test.Core.IdentityServer/Dockerfile.local
+    environment:
+      - ASPNETCORE_URLS=https://+:443;http://+:80;
+      - App__SelfUrl=https://localhost:44334
+      - App__CorsOrigins=https://localhost:44353,https://localhost:44354
+      - AuthServer__RequireHttpsMetadata=false
+      - AuthServer__Authority=http://core-identity-server
+      - AuthServer__SetSelfAsIssuer=true
+      - Kestrel__Certificates__Default__Path=/root/certificate/localhost.pfx
+      - Kestrel__Certificates__Default__Password=91f91912-5ab0-49df-8166-23377efaf3cc
+      - ConnectionStrings__Default=Data Source=sql-server;Initial Catalog=Core;User Id=sa;Password=myPassw0rd;MultipleActiveResultSets=true;Persist Security Info=True;
+      - Redis__Configuration=redis
+    ports:
+      - "44334:443"
+    depends_on:
+      sql-server:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: on-failure
+    volumes:
+      - ./certs:/root/certificate
+    networks:
+      - abp-network
+
+  db-migrator:
+    image: test/core-db-migrator:latest
+    container_name: db-migrator
+    build:
+      context: ../../
+      dockerfile: src/Core.DbMigrator/Dockerfile.local
+    environment:
+      - IdentityServer__Clients__Core_Web__RootUrl=https://localhost:44353
+      - IdentityServer__Clients__Core_Swagger__RootUrl=https://localhost:44354
+      - ConnectionStrings__Default=Data Source=sql-server;Initial Catalog=Core;User Id=sa;Password=myPassw0rd;MultipleActiveResultSets=true;Persist Security Info=True;
+    depends_on:
+      sql-server:
+        condition: service_healthy
+    networks:
+      - abp-network
+  
+  sql-server:
+    container_name: sql-server
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1434:1433"
+    environment:
+      SA_PASSWORD: "myPassw0rd"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - sqldata:/var/opt/mssql
+    networks:
+      - abp-network
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S sql-server -U sa -P "myPassw0rd" -Q "SELECT 1" -b -o /dev/null
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+  redis:
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - abp-network
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
+volumes:
+  sqldata:
+    name: core_sqldata
+networks:
+  abp-network:
+    name: core-network
+    driver: bridge

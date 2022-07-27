@@ -251,17 +251,12 @@ paket-files/
 .idea/
 *.sln.iml
 
-# Core
-src/Test.Core.Web/Logs/*
-src/Test.Core.Web/Logs/*
-src/Test.Core.Web.Public/Logs/*
-src/Test.Core.Web.Public/Logs/*
-src/Test.Core.IdentityServer/Logs/*
-src/Test.Core.HttpApi.Host/Logs/*
-src/Test.Core.HttpApi.HostWithIds/Logs/*
-src/Test.Core.DbMigrator/Logs/*
-src/Test.Core.Blazor.Server/Logs/*
-src/Test.Core.Blazor.Server.Tiered/Logs/*
+# TestMDM
+host/TestMDM.IdentityServer/Logs/logs.txt
+host/TestMDM.HttpApi.Host/Logs/logs.txt
+host/TestMDM.Web.Host/Logs/logs.txt
+host/TestMDM.Web.Unified/Logs/logs.txt
+host/TestMDM.Blazor.Server.Host/Logs/logs.txt
 
 # Use abp install-libs to restore.
 **/wwwroot/libs/*
