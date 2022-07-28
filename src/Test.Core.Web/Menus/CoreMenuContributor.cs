@@ -19,6 +19,9 @@ using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.Users;
 using Volo.Saas.Host.Navigation;
+using TestMDM.Web.Menus;
+using Volo.Abp.Features;
+using TestMDM;
 
 namespace Test.Core.Web.Menus;
 
@@ -104,14 +107,18 @@ public class CoreMenuContributor : IMenuContributor
         //Administration->Settings
         administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 6);
 
-        context.Menu.AddItem(
+        var testMDMMenuItem = context.Menu.FindMenuItem(TestMDMMenus.Prefix);
+        testMDMMenuItem.AddItem(
             new ApplicationMenuItem(
                 CoreMenus.Distributors,
                 l["Menu:Distributors"],
                 url: "/Distributors",
-                icon: "fa fa-file-alt",
-                requiredPermissionName: CorePermissions.Distributors.Default)
+                icon: "fa fa-file-alt"
+                )
+                .RequireFeatures(true, TestMDMFeatures.Enable, TestMDMFeatures.Distributor)
+                .RequirePermissions(CorePermissions.Distributors.Default)
         );
+
         return Task.CompletedTask;
     }
 
