@@ -84,7 +84,7 @@ namespace Test.Core.Web;
     typeof(AbpAspNetCoreSerilogModule)
     )]
 [DependsOn(typeof(TestMDMWebModule))]
-    public class CoreWebModule : AbpModule
+public class CoreWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
@@ -150,6 +150,7 @@ namespace Test.Core.Web;
         {
             options.Conventions.AuthorizePage("/HostDashboard", CorePermissions.Dashboard.Host);
             options.Conventions.AuthorizePage("/TenantDashboard", CorePermissions.Dashboard.Tenant);
+            options.Conventions.AuthorizePage("/Distributors/Index", CorePermissions.Distributors.Default);
         });
     }
 
@@ -202,42 +203,42 @@ namespace Test.Core.Web;
                 options.Scope.Add("phone");
                 options.Scope.Add("Core");
             });
-            /*
-            * This configuration is used when the identityServer is running on docker containers at localhost.
-            * Configuring the redirectin URLs for internal network and the web
-            */
-            if (Convert.ToBoolean(configuration["AuthServer:IsContainerizedOnLocalhost"]))
+        /*
+        * This configuration is used when the identityServer is running on docker containers at localhost.
+        * Configuring the redirectin URLs for internal network and the web
+        */
+        if (Convert.ToBoolean(configuration["AuthServer:IsContainerizedOnLocalhost"]))
+        {
+            context.Services.Configure<OpenIdConnectOptions>("oidc", options =>
             {
-                context.Services.Configure<OpenIdConnectOptions>("oidc", options =>
+                options.MetadataAddress = configuration["AuthServer:MetaAddress"].EnsureEndsWith('/') +
+                                        ".well-known/openid-configuration";
+
+                var previousOnRedirectToIdentityProvider = options.Events.OnRedirectToIdentityProvider;
+                options.Events.OnRedirectToIdentityProvider = async ctx =>
                 {
-                    options.MetadataAddress = configuration["AuthServer:MetaAddress"].EnsureEndsWith('/') +
-                                            ".well-known/openid-configuration";
-
-                    var previousOnRedirectToIdentityProvider = options.Events.OnRedirectToIdentityProvider;
-                    options.Events.OnRedirectToIdentityProvider = async ctx =>
-                    {
                         // Intercept the redirection so the browser navigates to the right URL in your host
-                        ctx.ProtocolMessage.IssuerAddress = configuration["AuthServer:Authority"].EnsureEndsWith('/') + "connect/authorize";
+                    ctx.ProtocolMessage.IssuerAddress = configuration["AuthServer:Authority"].EnsureEndsWith('/') + "connect/authorize";
 
-                        if (previousOnRedirectToIdentityProvider != null)
-                        {
-                            await previousOnRedirectToIdentityProvider(ctx);
-                        }
-                    };
-                    var previousOnRedirectToIdentityProviderForSignOut = options.Events.OnRedirectToIdentityProviderForSignOut;
-                    options.Events.OnRedirectToIdentityProviderForSignOut = async ctx =>
+                    if (previousOnRedirectToIdentityProvider != null)
                     {
+                        await previousOnRedirectToIdentityProvider(ctx);
+                    }
+                };
+                var previousOnRedirectToIdentityProviderForSignOut = options.Events.OnRedirectToIdentityProviderForSignOut;
+                options.Events.OnRedirectToIdentityProviderForSignOut = async ctx =>
+                {
                         // Intercept the redirection for signout so the browser navigates to the right URL in your host
-                        ctx.ProtocolMessage.IssuerAddress = configuration["AuthServer:Authority"].EnsureEndsWith('/') + "connect/endsession";
+                    ctx.ProtocolMessage.IssuerAddress = configuration["AuthServer:Authority"].EnsureEndsWith('/') + "connect/endsession";
 
-                        if (previousOnRedirectToIdentityProviderForSignOut != null)
-                        {
-                            await previousOnRedirectToIdentityProviderForSignOut(ctx);
-                        }
-                    };
-                });
+                    if (previousOnRedirectToIdentityProviderForSignOut != null)
+                    {
+                        await previousOnRedirectToIdentityProviderForSignOut(ctx);
+                    }
+                };
+            });
 
-            }
+        }
     }
 
     private void ConfigureImpersonation(ServiceConfigurationContext context, IConfiguration configuration)

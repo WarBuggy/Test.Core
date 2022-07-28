@@ -16,6 +16,11 @@ public class CorePermissionDefinitionProvider : PermissionDefinitionProvider
 
         //Define your own permissions here. Example:
         //myGroup.AddPermission(CorePermissions.MyPermission1, L("Permission:MyPermission1"));
+
+        var distributorPermission = myGroup.AddPermission(CorePermissions.Distributors.Default, L("Permission:Distributors"));
+        distributorPermission.AddChild(CorePermissions.Distributors.Create, L("Permission:Create"));
+        distributorPermission.AddChild(CorePermissions.Distributors.Edit, L("Permission:Edit"));
+        distributorPermission.AddChild(CorePermissions.Distributors.Delete, L("Permission:Delete"));
     }
 
     private static LocalizableString L(string name)

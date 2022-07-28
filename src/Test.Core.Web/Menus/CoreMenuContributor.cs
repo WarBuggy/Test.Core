@@ -1,4 +1,5 @@
-﻿using System;
+using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Authorization;
@@ -81,7 +82,6 @@ public class CoreMenuContributor : IMenuContributor
         //Saas
         context.Menu.SetSubItemOrder(SaasHostMenuNames.GroupName, 3);
 
-
         //Administration
         var administration = context.Menu.GetAdministration();
         administration.Order = 5;
@@ -104,6 +104,14 @@ public class CoreMenuContributor : IMenuContributor
         //Administration->Settings
         administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 6);
 
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+                CoreMenus.Distributors,
+                l["Menu:Distributors"],
+                url: "/Distributors",
+                icon: "fa fa-file-alt",
+                requiredPermissionName: CorePermissions.Distributors.Default)
+        );
         return Task.CompletedTask;
     }
 

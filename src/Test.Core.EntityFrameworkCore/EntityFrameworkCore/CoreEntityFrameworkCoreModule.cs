@@ -1,3 +1,4 @@
+using Test.Core.Distributors;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -36,7 +37,7 @@ namespace Test.Core.EntityFrameworkCore;
     typeof(BlobStoringDatabaseEntityFrameworkCoreModule)
     )]
 [DependsOn(typeof(TestMDMEntityFrameworkCoreModule))]
-    public class CoreEntityFrameworkCoreModule : AbpModule
+public class CoreEntityFrameworkCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
@@ -50,15 +51,17 @@ namespace Test.Core.EntityFrameworkCore;
     {
         context.Services.AddAbpDbContext<CoreDbContext>(options =>
         {
-                /* Remove "includeAllEntities: true" to create
-                 * default repositories only for aggregate roots */
+            /* Remove "includeAllEntities: true" to create
+             * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
+            options.AddRepository<Distributor, Distributors.EfCoreDistributorRepository>();
+
         });
 
         Configure<AbpDbContextOptions>(options =>
         {
-                /* The main point to change your DBMS.
-                 * See also CoreDbContextFactory for EF Core tooling. */
+            /* The main point to change your DBMS.
+             * See also CoreDbContextFactory for EF Core tooling. */
             options.UseNpgsql();
         });
     }

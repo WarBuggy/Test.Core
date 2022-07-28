@@ -1,4 +1,4 @@
-﻿namespace Test.Core.Web.Menus;
+namespace Test.Core.Web.Menus;
 
 public class CoreMenus
 {
@@ -9,4 +9,6 @@ public class CoreMenus
     public const string HostDashboard = Prefix + ".HostDashboard";
 
     public const string TenantDashboard = Prefix + ".TenantDashboard";
+    public const string Distributors = Prefix + ".Distributors";
+
 }

@@ -1,3 +1,5 @@
+using Test.Core.Distributors;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -29,6 +31,7 @@ public class CoreDbContext :
     IIdentityProDbContext,
     ISaasDbContext
 {
+    public DbSet<Distributor> Distributors { get; set; }
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
     #region Entities from the modules
@@ -93,5 +96,13 @@ public class CoreDbContext :
         //    //...
         //});
         builder.ConfigureTestMDM();
-        }
+        builder.Entity<Distributor>(b =>
+    {
+        b.ToTable(CoreConsts.DbTablePrefix + "Distributors", CoreConsts.DbSchema);
+        b.ConfigureByConvention();
+        b.Property(x => x.TenantId).HasColumnName(nameof(Distributor.TenantId));
+        b.Property(x => x.CompanyName).HasColumnName(nameof(Distributor.CompanyName)).IsRequired();
+        b.Property(x => x.TaxID).HasColumnName(nameof(Distributor.TaxID)).IsRequired();
+    });
+    }
 }
