@@ -1,10 +1,9 @@
 ﻿using Volo.Abp.Features;
 using Volo.Abp.Localization;
 using Volo.Abp.Validation.StringValues;
-using TetsMDM;
 using TestMDM.Localization;
 
-namespace FeaturesDemo
+namespace TestMDM
 {
     public class TestMDMFeatureDefinitionProvider : FeatureDefinitionProvider
     {

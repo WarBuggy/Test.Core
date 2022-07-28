@@ -2,7 +2,7 @@
   "culture": "en",
   "texts": {
     "SamplePageMessage": "A sample page for the TestMDM module",
-    "Menu:TetsMDM": "TestMDM",
+    "Menu:TestMDM": "TestMDM",
     "EnableMDM": "MDM",
     "EnableDistributor": "Distributor"
   }
