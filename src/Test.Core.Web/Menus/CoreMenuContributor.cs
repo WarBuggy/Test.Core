@@ -107,18 +107,6 @@ public class CoreMenuContributor : IMenuContributor
         //Administration->Settings
         administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 6);
 
-        var testMDMMenuItem = context.Menu.FindMenuItem(TestMDMMenus.Prefix);
-        testMDMMenuItem.AddItem(
-            new ApplicationMenuItem(
-                CoreMenus.Distributors,
-                l["Menu:Distributors"],
-                url: "/Distributors",
-                icon: "fa fa-file-alt"
-                )
-                .RequireFeatures(true, TestMDMFeatures.Enable, TestMDMFeatures.Distributor)
-                .RequirePermissions(CorePermissions.Distributors.Default)
-        );
-
         return Task.CompletedTask;
     }
 
