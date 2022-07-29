@@ -9,13 +9,14 @@ namespace TestMDM
     {
         public override void Define(IFeatureDefinitionContext context)
         {
-            var masterGroup = context.AddGroup(TestMDMFeatures.GroupName);
+            var masterGroup = context.AddGroup(TestMDMFeatures.GroupName,
+                 LocalizableString.Create<TestMDMResource>("Feature:MDMGroup"));
 
             var enable = masterGroup.AddFeature(
                 TestMDMFeatures.Enable,
                 defaultValue: "false",
                 displayName: LocalizableString
-                                 .Create<TestMDMResource>("EnableMDM"),
+                                 .Create<TestMDMResource>("Feature:EnableMDM"),
                 valueType: new ToggleStringValueType()
             );
 
@@ -23,7 +24,7 @@ namespace TestMDM
                TestMDMFeatures.Distributor,
                 defaultValue: "false",
                 displayName: LocalizableString
-                                 .Create<TestMDMResource>("EnableDistributor"),
+                                 .Create<TestMDMResource>("Feature:EnableDistributor"),
                 valueType: new ToggleStringValueType()
             );
         }
