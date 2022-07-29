@@ -27,6 +27,7 @@ namespace TestMDM.Distributors
             _distributorManager = distributorManager;
         }
 
+        [Authorize(TestMDMPermissions.Distributors.Default)]
         public virtual async Task<PagedResultDto<DistributorDto>> GetListAsync(GetDistributorsInput input)
         {
             var totalCount = await _distributorRepository.GetCountAsync(input.FilterText, input.CompanyName, input.TaxId);
@@ -39,6 +40,7 @@ namespace TestMDM.Distributors
             };
         }
 
+        [Authorize(TestMDMPermissions.Distributors.Default)]
         public virtual async Task<DistributorDto> GetAsync(Guid id)
         {
             return ObjectMapper.Map<Distributor, DistributorDto>(await _distributorRepository.GetAsync(id));
