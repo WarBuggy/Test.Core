@@ -150,7 +150,6 @@ public class CoreWebModule : AbpModule
         {
             options.Conventions.AuthorizePage("/HostDashboard", CorePermissions.Dashboard.Host);
             options.Conventions.AuthorizePage("/TenantDashboard", CorePermissions.Dashboard.Tenant);
-            options.Conventions.AuthorizePage("/Distributors/Index", CorePermissions.Distributors.Default);
         });
     }
 

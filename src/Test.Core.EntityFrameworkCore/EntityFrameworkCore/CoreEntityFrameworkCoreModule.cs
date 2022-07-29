@@ -1,4 +1,3 @@
-using Test.Core.Distributors;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -54,8 +53,6 @@ public class CoreEntityFrameworkCoreModule : AbpModule
             /* Remove "includeAllEntities: true" to create
              * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
-            options.AddRepository<Distributor, Distributors.EfCoreDistributorRepository>();
-
         });
 
         Configure<AbpDbContextOptions>(options =>

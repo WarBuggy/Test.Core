@@ -24,189 +24,125 @@ namespace Test.Core.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Test.Core.Distributors.Distributor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("CompanyName");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasMaxLength(40)
-                        .HasColumnType("character varying(40)")
-                        .HasColumnName("ConcurrencyStamp");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("CreationTime");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("CreatorId");
-
-                    b.Property<Guid?>("DeleterId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("DeleterId");
-
-                    b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("DeletionTime");
-
-                    b.Property<string>("ExtraProperties")
-                        .HasColumnType("text")
-                        .HasColumnName("ExtraProperties");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false)
-                        .HasColumnName("IsDeleted");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("LastModificationTime");
-
-                    b.Property<Guid?>("LastModifierId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("LastModifierId");
-
-                    b.Property<string>("TaxID")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("TaxID");
-
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("TenantId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppDistributors", (string)null);
-                });
-
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                            {
+                                b.Property<Guid>("Id")
+                                    .ValueGeneratedOnAdd()
+                                    .HasColumnType("uuid");
 
-                    b.Property<string>("ApplicationName")
-                        .HasMaxLength(96)
-                        .HasColumnType("character varying(96)")
-                        .HasColumnName("ApplicationName");
+                                b.Property<string>("ApplicationName")
+                                    .HasMaxLength(96)
+                                    .HasColumnType("character varying(96)")
+                                    .HasColumnName("ApplicationName");
 
-                    b.Property<string>("BrowserInfo")
-                        .HasMaxLength(512)
-                        .HasColumnType("character varying(512)")
-                        .HasColumnName("BrowserInfo");
+                                b.Property<string>("BrowserInfo")
+                                    .HasMaxLength(512)
+                                    .HasColumnType("character varying(512)")
+                                    .HasColumnName("BrowserInfo");
 
-                    b.Property<string>("ClientId")
-                        .HasMaxLength(64)
-                        .HasColumnType("character varying(64)")
-                        .HasColumnName("ClientId");
+                                b.Property<string>("ClientId")
+                                    .HasMaxLength(64)
+                                    .HasColumnType("character varying(64)")
+                                    .HasColumnName("ClientId");
 
-                    b.Property<string>("ClientIpAddress")
-                        .HasMaxLength(64)
-                        .HasColumnType("character varying(64)")
-                        .HasColumnName("ClientIpAddress");
+                                b.Property<string>("ClientIpAddress")
+                                    .HasMaxLength(64)
+                                    .HasColumnType("character varying(64)")
+                                    .HasColumnName("ClientIpAddress");
 
-                    b.Property<string>("ClientName")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)")
-                        .HasColumnName("ClientName");
+                                b.Property<string>("ClientName")
+                                    .HasMaxLength(128)
+                                    .HasColumnType("character varying(128)")
+                                    .HasColumnName("ClientName");
 
-                    b.Property<string>("Comments")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("Comments");
+                                b.Property<string>("Comments")
+                                    .HasMaxLength(256)
+                                    .HasColumnType("character varying(256)")
+                                    .HasColumnName("Comments");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasMaxLength(40)
-                        .HasColumnType("character varying(40)")
-                        .HasColumnName("ConcurrencyStamp");
+                                b.Property<string>("ConcurrencyStamp")
+                                    .IsConcurrencyToken()
+                                    .HasMaxLength(40)
+                                    .HasColumnType("character varying(40)")
+                                    .HasColumnName("ConcurrencyStamp");
 
-                    b.Property<string>("CorrelationId")
-                        .HasMaxLength(64)
-                        .HasColumnType("character varying(64)")
-                        .HasColumnName("CorrelationId");
+                                b.Property<string>("CorrelationId")
+                                    .HasMaxLength(64)
+                                    .HasColumnType("character varying(64)")
+                                    .HasColumnName("CorrelationId");
 
-                    b.Property<string>("Exceptions")
-                        .HasColumnType("text");
+                                b.Property<string>("Exceptions")
+                                    .HasColumnType("text");
 
-                    b.Property<int>("ExecutionDuration")
-                        .HasColumnType("integer")
-                        .HasColumnName("ExecutionDuration");
+                                b.Property<int>("ExecutionDuration")
+                                    .HasColumnType("integer")
+                                    .HasColumnName("ExecutionDuration");
 
-                    b.Property<DateTime>("ExecutionTime")
-                        .HasColumnType("timestamp without time zone");
+                                b.Property<DateTime>("ExecutionTime")
+                                    .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("ExtraProperties")
-                        .HasColumnType("text")
-                        .HasColumnName("ExtraProperties");
+                                b.Property<string>("ExtraProperties")
+                                    .HasColumnType("text")
+                                    .HasColumnName("ExtraProperties");
 
-                    b.Property<string>("HttpMethod")
-                        .HasMaxLength(16)
-                        .HasColumnType("character varying(16)")
-                        .HasColumnName("HttpMethod");
+                                b.Property<string>("HttpMethod")
+                                    .HasMaxLength(16)
+                                    .HasColumnType("character varying(16)")
+                                    .HasColumnName("HttpMethod");
 
-                    b.Property<int?>("HttpStatusCode")
-                        .HasColumnType("integer")
-                        .HasColumnName("HttpStatusCode");
+                                b.Property<int?>("HttpStatusCode")
+                                    .HasColumnType("integer")
+                                    .HasColumnName("HttpStatusCode");
 
-                    b.Property<Guid?>("ImpersonatorTenantId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("ImpersonatorTenantId");
+                                b.Property<Guid?>("ImpersonatorTenantId")
+                                    .HasColumnType("uuid")
+                                    .HasColumnName("ImpersonatorTenantId");
 
-                    b.Property<string>("ImpersonatorTenantName")
-                        .HasMaxLength(64)
-                        .HasColumnType("character varying(64)")
-                        .HasColumnName("ImpersonatorTenantName");
+                                b.Property<string>("ImpersonatorTenantName")
+                                    .HasMaxLength(64)
+                                    .HasColumnType("character varying(64)")
+                                    .HasColumnName("ImpersonatorTenantName");
 
-                    b.Property<Guid?>("ImpersonatorUserId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("ImpersonatorUserId");
+                                b.Property<Guid?>("ImpersonatorUserId")
+                                    .HasColumnType("uuid")
+                                    .HasColumnName("ImpersonatorUserId");
 
-                    b.Property<string>("ImpersonatorUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("ImpersonatorUserName");
+                                b.Property<string>("ImpersonatorUserName")
+                                    .HasMaxLength(256)
+                                    .HasColumnType("character varying(256)")
+                                    .HasColumnName("ImpersonatorUserName");
 
-                    b.Property<Guid?>("TenantId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("TenantId");
+                                b.Property<Guid?>("TenantId")
+                                    .HasColumnType("uuid")
+                                    .HasColumnName("TenantId");
 
-                    b.Property<string>("TenantName")
-                        .HasMaxLength(64)
-                        .HasColumnType("character varying(64)")
-                        .HasColumnName("TenantName");
+                                b.Property<string>("TenantName")
+                                    .HasMaxLength(64)
+                                    .HasColumnType("character varying(64)")
+                                    .HasColumnName("TenantName");
 
-                    b.Property<string>("Url")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("Url");
+                                b.Property<string>("Url")
+                                    .HasMaxLength(256)
+                                    .HasColumnType("character varying(256)")
+                                    .HasColumnName("Url");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("UserId");
+                                b.Property<Guid?>("UserId")
+                                    .HasColumnType("uuid")
+                                    .HasColumnName("UserId");
 
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("UserName");
+                                b.Property<string>("UserName")
+                                    .HasMaxLength(256)
+                                    .HasColumnType("character varying(256)")
+                                    .HasColumnName("UserName");
 
-                    b.HasKey("Id");
+                                b.HasKey("Id");
 
-                    b.HasIndex("TenantId", "ExecutionTime");
+                                b.HasIndex("TenantId", "ExecutionTime");
 
-                    b.HasIndex("TenantId", "UserId", "ExecutionTime");
+                                b.HasIndex("TenantId", "UserId", "ExecutionTime");
 
-                    b.ToTable("AbpAuditLogs", (string)null);
-                });
+                                b.ToTable("AbpAuditLogs", (string)null);
+                            });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
                 {
