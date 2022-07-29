@@ -1,9 +1,26 @@
 {
-  "culture": "en",
-  "texts": {
+  "Culture": "en",
+  "Texts": {
     "SamplePageMessage": "A sample page for the TestMDM module",
     "Menu:TestMDM": "TestMDM",
     "EnableMDM": "MDM",
-    "EnableDistributor": "Distributor"
+    "EnableDistributor": "Distributor",
+    "Permission:Distributors": "Distributors",
+    "Permission:testmdm": "testmdm",
+    "Permission:Create": "Create",
+    "Permission:Edit": "Edit",
+    "Permission:Delete": "Delete",
+    "Distributors": "Distributors",
+    "NewDistributor": "New Distributor",
+    "Actions": "Actions",
+    "SuccessfullyDeleted": "Successfully deleted",
+    "DeleteConfirmationMessage": "Are you sure you want to delete this record?",
+    "Search": "Search",
+    "Pick": "Pick",
+    "SeeAdvancedFilters": "Advanced filters",
+    "Name": "Name",
+    "TaxId": "Tax Id",
+    "Menu:Distributors": "Distributors",
+    "Menu:testmdm": "testmdm"
   }
 }

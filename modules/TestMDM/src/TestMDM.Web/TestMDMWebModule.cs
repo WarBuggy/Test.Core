@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
 using TestMDM.Localization;
 using TestMDM.Web.Menus;
@@ -52,7 +52,8 @@ public class TestMDMWebModule : AbpModule
 
         Configure<RazorPagesOptions>(options =>
         {
-                //Configure authorization.
-            });
+            //Configure authorization.
+            options.Conventions.AuthorizePage("/Distributors/Index", testmdmPermissions.Distributors.Default);
+        });
     }
 }

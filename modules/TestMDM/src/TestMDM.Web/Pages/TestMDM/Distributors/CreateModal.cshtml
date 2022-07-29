@@ -1,0 +1,30 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using testmdm.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using testmdm.Web.Pages.testmdm.Distributors
+@using testmdm.Distributors;
+@using System.Globalization
+@inject IHtmlLocalizer<testmdmResource> L
+@model CreateModalModel
+@{
+    Layout = null;
+}
+
+<form data-ajaxForm="true" asp-page="/testmdm/Distributors/CreateModal" autocomplete="off">
+    <abp-modal id="DistributorCreateModal">
+        <abp-modal-header title="@L["NewDistributor"].Value"></abp-modal-header>
+
+        <abp-modal-body>
+                    
+            <abp-input asp-for="Distributor.Name"/>
+
+            <abp-input asp-for="Distributor.TaxId"/>
+
+                    
+                
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</form>
