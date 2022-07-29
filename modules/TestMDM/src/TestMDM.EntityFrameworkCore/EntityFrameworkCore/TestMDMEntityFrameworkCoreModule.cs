@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using TestMDM.Distributors;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 
@@ -14,9 +15,11 @@ public class TestMDMEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<TestMDMDbContext>(options =>
         {
-                /* Add custom repositories here. Example:
-                 * options.AddRepository<Question, EfCoreQuestionRepository>();
-                 */
+            /* Add custom repositories here. Example:
+             * options.AddRepository<Question, EfCoreQuestionRepository>();
+             */
+            options.AddRepository<Distributor, Distributors.EfCoreDistributorRepository>();
+
         });
     }
 }

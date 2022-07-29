@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
+using TestMDM.Distributors;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 
 namespace TestMDM.EntityFrameworkCore;
@@ -29,5 +31,13 @@ public static class TestMDMDbContextModelCreatingExtensions
             b.HasIndex(q => q.CreationTime);
         });
         */
+        builder.Entity<Distributor>(b =>
+    {
+        b.ToTable(TestMDMDbProperties.DbTablePrefix + "Distributors", TestMDMDbProperties.DbSchema);
+        b.ConfigureByConvention();
+        b.Property(x => x.TenantId).HasColumnName(nameof(Distributor.TenantId));
+        b.Property(x => x.CompanyName).HasColumnName(nameof(Distributor.CompanyName)).IsRequired();
+        b.Property(x => x.TaxId).HasColumnName(nameof(Distributor.TaxId)).IsRequired();
+    });
     }
 }
