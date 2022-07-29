@@ -5,11 +5,13 @@ using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Validation;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Features;
 
 namespace TestMDM;
 
 [DependsOn(
-    typeof(AbpValidationModule)
+    typeof(AbpValidationModule),
+    typeof(AbpFeaturesModule)
 )]
 public class TestMDMDomainSharedModule : AbpModule
 {

@@ -6,7 +6,7 @@
         "EnableMDM": "MDM",
         "EnableDistributor": "Distributor",
         "Permission:Distributors": "Distributors",
-        "Permission:TestMDM": "Test M D M",
+        "Permission:TestMDM": "Test MDM",
         "Permission:Create": "Create",
         "Permission:Edit": "Edit",
         "Permission:Delete": "Delete",
@@ -19,7 +19,7 @@
         "Pick": "Pick",
         "SeeAdvancedFilters": "Advanced filters",
         "CompanyName": "Company Name",
-        "TaxId": "Tax Id",
+        "TaxId": "Tax ID",
         "Menu:Distributors": "Distributors"
     }
 }

@@ -10,10 +10,11 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using TestMDM.Permissions;
 using TestMDM.Distributors;
+using Volo.Abp.Features;
 
 namespace TestMDM.Distributors
 {
-
+    [RequiresFeature(TestMDMFeatures.GroupName)]
     [Authorize(TestMDMPermissions.Distributors.Default)]
     public class DistributorsAppService : ApplicationService, IDistributorsAppService
     {

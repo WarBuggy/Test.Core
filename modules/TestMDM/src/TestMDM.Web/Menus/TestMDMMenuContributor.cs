@@ -33,7 +33,9 @@ public class TestMDMMenuContributor : IMenuContributor
             displayName: l["Menu:TestMDM"],
             "~/TestMDM",
             icon: "fa fa-globe")
-            .RequireFeatures(TestMDMFeatures.Enable);
+            .RequireFeatures(TestMDMFeatures.Enable)
+            .RequirePermissions(TestMDMPermissions.Distributors.Default); 
+            // add more permission here as more entities added
 
         //Add main menu items.
         context.Menu.Items.AddIfNotContains(moduleMenu);
@@ -47,9 +49,9 @@ public class TestMDMMenuContributor : IMenuContributor
                 Menus.TestMDMMenus.Distributors,
                 context.GetLocalizer<TestMDMResource>()["Menu:Distributors"],
                 "/TestMDM/Distributors",
-                icon: "fa fa-file-alt",
-                requiredPermissionName: TestMDMPermissions.Distributors.Default
-            )
+                icon: "fa fa-file-alt")
+            .RequireFeatures(true, TestMDMFeatures.Enable, TestMDMFeatures.Distributor)
+            .RequirePermissions(TestMDMPermissions.Distributors.Default)
         );
     }
 }
