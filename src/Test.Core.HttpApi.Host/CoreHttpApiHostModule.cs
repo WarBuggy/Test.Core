@@ -66,7 +66,7 @@ public class CoreHttpApiHostModule : AbpModule
         ConfigureDataProtection(context, configuration, hostingEnvironment);
         ConfigureCors(context, configuration);
         ConfigureExternalProviders(context);
-        ConfigureHealthChecks(context);
+        // ConfigureHealthChecks(context);
     }
 
     private void ConfigureHealthChecks(ServiceConfigurationContext context)
