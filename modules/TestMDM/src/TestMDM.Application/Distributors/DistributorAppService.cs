@@ -14,7 +14,7 @@ using Volo.Abp.Features;
 
 namespace TestMDM.Distributors
 {
-    [RequiresFeature(TestMDMFeatures.GroupName)]
+    [RequiresFeature(TestMDMFeatures.Enable)]
     [Authorize(TestMDMPermissions.Distributors.Default)]
     public class DistributorsAppService : ApplicationService, IDistributorsAppService
     {
