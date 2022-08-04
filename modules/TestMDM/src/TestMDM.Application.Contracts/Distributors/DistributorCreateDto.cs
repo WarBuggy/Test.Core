@@ -7,10 +7,10 @@ namespace TestMDM.Distributors
     public class DistributorCreateDto
     {
         [Required]
-        [StringLength(int.MaxValue, MinimumLength = DistributorConsts.CompanyNameMinLength)]
+        [StringLength(DistributorConsts.CompanyNameMaxLength, MinimumLength = DistributorConsts.CompanyNameMinLength)]
         public string CompanyName { get; set; }
         [Required]
-        [StringLength(int.MaxValue, MinimumLength = DistributorConsts.TaxIdMinLength)]
+        [StringLength(DistributorConsts.TaxIdMaxLength, MinimumLength = DistributorConsts.TaxIdMinLength)]
         public string TaxId { get; set; }
     }
 }

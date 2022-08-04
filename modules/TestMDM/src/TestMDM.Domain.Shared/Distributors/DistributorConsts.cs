@@ -10,6 +10,8 @@ namespace TestMDM.Distributors
         }
 
         public const int CompanyNameMinLength = 1;
+        public const int CompanyNameMaxLength = 300;
         public const int TaxIdMinLength = 1;
+        public const int TaxIdMaxLength = 50;
     }
 }
