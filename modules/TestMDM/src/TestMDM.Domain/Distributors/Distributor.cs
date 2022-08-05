@@ -31,7 +31,9 @@ namespace TestMDM.Distributors
 
             Id = id;
             Check.NotNull(companyName, nameof(companyName));
+            Check.Length(companyName, nameof(companyName), DistributorConsts.CompanyNameMaxLength, DistributorConsts.CompanyNameMinLength);
             Check.NotNull(taxId, nameof(taxId));
+            Check.Length(taxId, nameof(taxId), DistributorConsts.TaxIdMaxLength, DistributorConsts.TaxIdMinLength);
             CompanyName = companyName;
             TaxId = taxId;
         }

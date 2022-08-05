@@ -1,26 +1,26 @@
 $(function () {
     var l = abp.localization.getResource("TestMDM");
-
-    var distributorService = window.testMDM.distributors.distributor;
-
-
+	
+	var distributorService = window.testMDM.distributors.distributor;
+	
+	
     var createModal = new abp.ModalManager({
         viewUrl: abp.appPath + "TestMDM/Distributors/CreateModal",
         scriptUrl: "/Pages/TestMDM/Distributors/createModal.js",
         modalClass: "distributorCreate"
     });
 
-    var editModal = new abp.ModalManager({
+	var editModal = new abp.ModalManager({
         viewUrl: abp.appPath + "TestMDM/Distributors/EditModal",
         scriptUrl: "/Pages/TestMDM/Distributors/editModal.js",
         modalClass: "distributorEdit"
     });
 
-    var getFilter = function () {
+	var getFilter = function() {
         return {
             filterText: $("#FilterText").val(),
             companyName: $("#CompanyNameFilter").val(),
-            taxId: $("#TaxIdFilter").val()
+			taxId: $("#TaxIdFilter").val()
         };
     };
 
@@ -44,8 +44,8 @@ $(function () {
                                 visible: abp.auth.isGranted('TestMDM.Distributors.Edit'),
                                 action: function (data) {
                                     editModal.open({
-                                        id: data.record.id
-                                    });
+                                     id: data.record.id
+                                     });
                                 }
                             },
                             {
@@ -65,8 +65,8 @@ $(function () {
                         ]
                 }
             },
-            { data: "companyName" },
-            { data: "taxId" }
+			{ data: "companyName" },
+			{ data: "taxId" }
         ]
     }));
 
@@ -83,7 +83,7 @@ $(function () {
         createModal.open();
     });
 
-    $("#SearchForm").submit(function (e) {
+	$("#SearchForm").submit(function (e) {
         e.preventDefault();
         dataTable.ajax.reload();
     });
@@ -98,9 +98,9 @@ $(function () {
         }
     });
 
-    $('#AdvancedFilterSection select').change(function () {
+    $('#AdvancedFilterSection select').change(function() {
         dataTable.ajax.reload();
     });
-
-
+    
+    
 });

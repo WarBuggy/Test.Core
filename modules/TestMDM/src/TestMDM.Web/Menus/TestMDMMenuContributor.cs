@@ -34,8 +34,8 @@ public class TestMDMMenuContributor : IMenuContributor
             "~/TestMDM",
             icon: "fa fa-globe")
             .RequireFeatures(TestMDMFeatures.Enable)
-            .RequirePermissions(TestMDMPermissions.Distributors.Default); 
-            // add more permission here as more entities added
+            .RequirePermissions(TestMDMPermissions.Distributors.Default);
+        // add more permission here as more entities added
 
         //Add main menu items.
         context.Menu.Items.AddIfNotContains(moduleMenu);
