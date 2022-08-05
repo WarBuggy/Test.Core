@@ -830,9 +830,6 @@ namespace Test.Core.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("DeletionTime");
 
-                    b.Property<Guid>("Distributor")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(256)
