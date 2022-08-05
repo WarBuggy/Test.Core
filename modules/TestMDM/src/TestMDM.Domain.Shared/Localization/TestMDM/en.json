@@ -21,6 +21,9 @@
     "SeeAdvancedFilters": "Advanced filters",
     "CompanyName": "Company Name",
     "TaxId": "Tax ID",
-    "Menu:Distributors": "Distributors"
+    "Menu:Distributors": "Distributors",
+    "TabTitle:DistributorHQ": "Head Office Distributor",
+    "DisplayName:DistributorHQName": "Head Office Distributor Name",
+    "DisplayName:DistributorHQTaxId": "Head Office Distributor Tax ID"
   }
 }
