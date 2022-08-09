@@ -10,7 +10,6 @@
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="5.3.3" />
 		<ProjectReference Include="..\TestMDM.Application.Contracts\TestMDM.Application.Contracts.csproj" />
-		<PackageReference Include="Volo.Abp.Identity.Pro.HttpApi" Version="5.3.3" />
 	</ItemGroup>
 
 </Project>

@@ -11,7 +11,6 @@
     <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="5.3.3" />
     <PackageReference Include="Volo.Abp.Authorization.Abstractions" Version="5.3.3" />
     <PackageReference Include="Volo.Abp.Features" Version="5.3.3" />
-	  <PackageReference Include="Volo.Abp.Identity.Pro.Application.Contracts" Version="5.3.3" />
     <ProjectReference Include="..\TestMDM.Domain.Shared\TestMDM.Domain.Shared.csproj" />
   </ItemGroup>
 
