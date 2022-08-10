@@ -15,6 +15,9 @@ namespace TestMDM.Web.Pages.TestMDM.Distributors
         [BindProperty]
         public DistributorCreateDto Distributor { get; set; }
 
+        [BindProperty]
+        public List<Guid> SelectedIdentityUserIds { get; set; }
+
         private readonly IDistributorsAppService _distributorsAppService;
 
         public CreateModalModel(IDistributorsAppService distributorsAppService)
@@ -31,6 +34,8 @@ namespace TestMDM.Web.Pages.TestMDM.Distributors
 
         public async Task<IActionResult> OnPostAsync()
         {
+
+            Distributor.IdentityUserIds = SelectedIdentityUserIds;
 
             await _distributorsAppService.CreateAsync(Distributor);
             return NoContent();

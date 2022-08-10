@@ -13,5 +13,7 @@ public class TestMDMWebAutoMapperProfile : Profile
          * into multiple profile classes for a better organization. */
 
         CreateMap<DistributorDto, DistributorUpdateDto>();
+
+        CreateMap<DistributorDto, DistributorUpdateDto>().Ignore(x => x.IdentityUserIds);
     }
 }

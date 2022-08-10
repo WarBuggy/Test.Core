@@ -9,6 +9,7 @@ namespace TestMDM.Distributors
 
         public string CompanyName { get; set; }
         public string TaxId { get; set; }
+        public Guid? IdentityUserId { get; set; }
 
         public GetDistributorsInput()
         {

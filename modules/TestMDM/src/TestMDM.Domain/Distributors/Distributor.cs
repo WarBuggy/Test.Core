@@ -21,6 +21,8 @@ namespace TestMDM.Distributors
         [NotNull]
         public virtual string TaxId { get; set; }
 
+        public ICollection<DistributorIdentityUser> IdentityUsers { get; private set; }
+
         public Distributor()
         {
 
@@ -36,7 +38,47 @@ namespace TestMDM.Distributors
             Check.Length(taxId, nameof(taxId), DistributorConsts.TaxIdMaxLength, DistributorConsts.TaxIdMinLength);
             CompanyName = companyName;
             TaxId = taxId;
+            IdentityUsers = new Collection<DistributorIdentityUser>();
+        }
+        public void AddIdentityUser(Guid identityUserId)
+        {
+            Check.NotNull(identityUserId, nameof(identityUserId));
+
+            if (IsInIdentityUsers(identityUserId))
+            {
+                return;
+            }
+
+            IdentityUsers.Add(new DistributorIdentityUser(Id, identityUserId));
         }
 
+        public void RemoveIdentityUser(Guid identityUserId)
+        {
+            Check.NotNull(identityUserId, nameof(identityUserId));
+
+            if (!IsInIdentityUsers(identityUserId))
+            {
+                return;
+            }
+
+            IdentityUsers.RemoveAll(x => x.IdentityUserId == identityUserId);
+        }
+
+        public void RemoveAllIdentityUsersExceptGivenIds(List<Guid> identityUserIds)
+        {
+            Check.NotNullOrEmpty(identityUserIds, nameof(identityUserIds));
+
+            IdentityUsers.RemoveAll(x => !identityUserIds.Contains(x.IdentityUserId));
+        }
+
+        public void RemoveAllIdentityUsers()
+        {
+            IdentityUsers.RemoveAll(x => x.DistributorId == Id);
+        }
+
+        private bool IsInIdentityUsers(Guid identityUserId)
+        {
+            return IdentityUsers.Any(x => x.IdentityUserId == identityUserId);
+        }
     }
 }

@@ -20,7 +20,8 @@ $(function () {
         return {
             filterText: $("#FilterText").val(),
             companyName: $("#CompanyNameFilter").val(),
-			taxId: $("#TaxIdFilter").val()
+			taxId: $("#TaxIdFilter").val(),
+			identityUserId: $("#IdentityUserFilter").val()
         };
     };
 
@@ -44,7 +45,7 @@ $(function () {
                                 visible: abp.auth.isGranted('TestMDM.Distributors.Edit'),
                                 action: function (data) {
                                     editModal.open({
-                                     id: data.record.id
+                                     id: data.record.distributor.id
                                      });
                                 }
                             },
@@ -55,7 +56,7 @@ $(function () {
                                     return l("DeleteConfirmationMessage");
                                 },
                                 action: function (data) {
-                                    distributorService.delete(data.record.id)
+                                    distributorService.delete(data.record.distributor.id)
                                         .then(function () {
                                             abp.notify.info(l("SuccessfullyDeleted"));
                                             dataTable.ajax.reload();
@@ -65,8 +66,8 @@ $(function () {
                         ]
                 }
             },
-			{ data: "companyName" },
-			{ data: "taxId" }
+			{ data: "distributor.companyName" },
+			{ data: "distributor.taxId" }
         ]
     }));
 
@@ -102,5 +103,22 @@ $(function () {
         dataTable.ajax.reload();
     });
     
-    
+                $('#IdentityUserFilter').select2({
+                ajax: {
+                    url: abp.appPath + 'api/app/distributors/identity-user-lookup',
+                    type: 'GET',
+                    data: function (params) {
+                        return { filter: params.term, maxResultCount: 10 }
+                    },
+                    processResults: function (data) {
+                        var mappedItems = _.map(data.items, function (item) {
+                            return { id: item.id, text: item.displayName };
+                        });
+                        mappedItems.unshift({ id: "", text: ' - ' });
+
+                        return { results: mappedItems };
+                    }
+                }
+            });
+        
 });

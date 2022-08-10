@@ -12,5 +12,6 @@ namespace TestMDM.Distributors
         [Required]
         [StringLength(DistributorConsts.TaxIdMaxLength, MinimumLength = DistributorConsts.TaxIdMinLength)]
         public string TaxId { get; set; }
+        public List<Guid> IdentityUserIds { get; set; }
     }
 }

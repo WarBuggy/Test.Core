@@ -27,19 +27,19 @@ namespace TestMDM.Distributors
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("a45f1928-f55e-4827-bbd2-e5c63704c58c")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("5b636648-472a-412c-bd87-cd385268ca71")).ShouldBe(true);
+            result.Items.Any(x => x.Distributor.Id == Guid.Parse("7e256683-82b8-4b08-81a1-a1b0e5b2057e")).ShouldBe(true);
+            result.Items.Any(x => x.Distributor.Id == Guid.Parse("4bfdf9bb-39ef-454b-b5e3-9fa498b757d1")).ShouldBe(true);
         }
 
         [Fact]
         public async Task GetAsync()
         {
             // Act
-            var result = await _distributorsAppService.GetAsync(Guid.Parse("a45f1928-f55e-4827-bbd2-e5c63704c58c"));
+            var result = await _distributorsAppService.GetAsync(Guid.Parse("7e256683-82b8-4b08-81a1-a1b0e5b2057e"));
 
             // Assert
             result.ShouldNotBeNull();
-            result.Id.ShouldBe(Guid.Parse("a45f1928-f55e-4827-bbd2-e5c63704c58c"));
+            result.Id.ShouldBe(Guid.Parse("7e256683-82b8-4b08-81a1-a1b0e5b2057e"));
         }
 
         [Fact]
@@ -48,8 +48,8 @@ namespace TestMDM.Distributors
             // Arrange
             var input = new DistributorCreateDto
             {
-                CompanyName = "0913b47523de40d2ae503289490fbb796613276e858844d6a9efee9b5555571ecbe7a9b25da84af7b187cdad5fd4c2bc0a940cb4e83f41d9969246f16ea934a67a8a2551302d44ac8858e0122a9f9b17a26bda620a574810aa39f06dff50a79b6ce26bcdcbc84bc785e350aa1d7232997769a7628c974f329587bee997acc42eb9fde5d5b7494522a506f95b61da930f726dce6665bf",
-                TaxId = "230954108aef47fbabeaa6b9f4e7b05dd2ec5523df2e43719f"
+                CompanyName = "1cfef8f73f4e455789197af0e0d7bb38e891cf4e43894a5da83d5580b59fc3d470fc14aa66074c0a92cbc103c7306d96f1f1c1838e0d42febb5ef0bdfb0200a1881d2f1270ef441aa88c04b28124e6dc27ec450f7619418fae54403c6d961d278247bfdba7bb47a9b3f08dba2dbc274eee3a6d8b55644d90bb978657a174f3f7d0bf01f525c9412ca3980c7f34124c4f8d87475f061b",
+                TaxId = "a60dd1ed864843cd8fdc5441cc9750af7b1ad018d5a24af688"
             };
 
             // Act
@@ -59,8 +59,8 @@ namespace TestMDM.Distributors
             var result = await _distributorRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.CompanyName.ShouldBe("0913b47523de40d2ae503289490fbb796613276e858844d6a9efee9b5555571ecbe7a9b25da84af7b187cdad5fd4c2bc0a940cb4e83f41d9969246f16ea934a67a8a2551302d44ac8858e0122a9f9b17a26bda620a574810aa39f06dff50a79b6ce26bcdcbc84bc785e350aa1d7232997769a7628c974f329587bee997acc42eb9fde5d5b7494522a506f95b61da930f726dce6665bf");
-            result.TaxId.ShouldBe("230954108aef47fbabeaa6b9f4e7b05dd2ec5523df2e43719f");
+            result.CompanyName.ShouldBe("1cfef8f73f4e455789197af0e0d7bb38e891cf4e43894a5da83d5580b59fc3d470fc14aa66074c0a92cbc103c7306d96f1f1c1838e0d42febb5ef0bdfb0200a1881d2f1270ef441aa88c04b28124e6dc27ec450f7619418fae54403c6d961d278247bfdba7bb47a9b3f08dba2dbc274eee3a6d8b55644d90bb978657a174f3f7d0bf01f525c9412ca3980c7f34124c4f8d87475f061b");
+            result.TaxId.ShouldBe("a60dd1ed864843cd8fdc5441cc9750af7b1ad018d5a24af688");
         }
 
         [Fact]
@@ -69,29 +69,29 @@ namespace TestMDM.Distributors
             // Arrange
             var input = new DistributorUpdateDto()
             {
-                CompanyName = "4d7c358ecc164693ae8bbc03137c1b600d4d81e90f7a4887a4677658c8d3c1a0ace9e2e07ae44f3c9522276ccc3453da6b5bdf7be4894f0cab3dd55cab508872136bc5088b894e3eabf9bf9d2a682cdf28e72787c67247b38686577e8015c0919e65fb99e08e45d3bf3fadbc4238f366425922628ff647cb898318313e4b81684cc10d4be96046518053706d3f8dc7c080b1719d3754",
-                TaxId = "49d88dbf6f9547dc8a4ad4d90d833886eae5cbb469524ab6b8"
+                CompanyName = "522c474599b348d582d99c8e28b86cd2bdec968650214ec38ef95639950900e104f92effbad843f4a1d04156a25338ac26727063916a4bbcbd78af1d76adddb695ad456bca30480fa41044ec6b049fae3f06e115dbb04b329d497122b32bc4f323dfc6def5594260b185cc6e8daea0eb6eceea34652a442db6e670fa3b872f0809487a00c52c494095ec3bdf6c9a9e32e595ff5b3213",
+                TaxId = "3cfbe0ea9fd641869788fbf092cf612b3102ebb38c684c38bb"
             };
 
             // Act
-            var serviceResult = await _distributorsAppService.UpdateAsync(Guid.Parse("a45f1928-f55e-4827-bbd2-e5c63704c58c"), input);
+            var serviceResult = await _distributorsAppService.UpdateAsync(Guid.Parse("7e256683-82b8-4b08-81a1-a1b0e5b2057e"), input);
 
             // Assert
             var result = await _distributorRepository.FindAsync(c => c.Id == serviceResult.Id);
 
             result.ShouldNotBe(null);
-            result.CompanyName.ShouldBe("4d7c358ecc164693ae8bbc03137c1b600d4d81e90f7a4887a4677658c8d3c1a0ace9e2e07ae44f3c9522276ccc3453da6b5bdf7be4894f0cab3dd55cab508872136bc5088b894e3eabf9bf9d2a682cdf28e72787c67247b38686577e8015c0919e65fb99e08e45d3bf3fadbc4238f366425922628ff647cb898318313e4b81684cc10d4be96046518053706d3f8dc7c080b1719d3754");
-            result.TaxId.ShouldBe("49d88dbf6f9547dc8a4ad4d90d833886eae5cbb469524ab6b8");
+            result.CompanyName.ShouldBe("522c474599b348d582d99c8e28b86cd2bdec968650214ec38ef95639950900e104f92effbad843f4a1d04156a25338ac26727063916a4bbcbd78af1d76adddb695ad456bca30480fa41044ec6b049fae3f06e115dbb04b329d497122b32bc4f323dfc6def5594260b185cc6e8daea0eb6eceea34652a442db6e670fa3b872f0809487a00c52c494095ec3bdf6c9a9e32e595ff5b3213");
+            result.TaxId.ShouldBe("3cfbe0ea9fd641869788fbf092cf612b3102ebb38c684c38bb");
         }
 
         [Fact]
         public async Task DeleteAsync()
         {
             // Act
-            await _distributorsAppService.DeleteAsync(Guid.Parse("a45f1928-f55e-4827-bbd2-e5c63704c58c"));
+            await _distributorsAppService.DeleteAsync(Guid.Parse("7e256683-82b8-4b08-81a1-a1b0e5b2057e"));
 
             // Assert
-            var result = await _distributorRepository.FindAsync(c => c.Id == Guid.Parse("a45f1928-f55e-4827-bbd2-e5c63704c58c"));
+            var result = await _distributorRepository.FindAsync(c => c.Id == Guid.Parse("7e256683-82b8-4b08-81a1-a1b0e5b2057e"));
 
             result.ShouldBeNull();
         }

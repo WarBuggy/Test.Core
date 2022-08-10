@@ -2,6 +2,7 @@ using Volo.Abp.EntityFrameworkCore.Modeling;
 using TestMDM.Distributors;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.Identity;
 
 namespace TestMDM.EntityFrameworkCore;
 
@@ -39,6 +40,24 @@ public static class TestMDMDbContextModelCreatingExtensions
         b.Property(x => x.TenantId).HasColumnName(nameof(Distributor.TenantId));
         b.Property(x => x.CompanyName).HasColumnName(nameof(Distributor.CompanyName)).IsRequired().HasMaxLength(DistributorConsts.CompanyNameMaxLength);
         b.Property(x => x.TaxId).HasColumnName(nameof(Distributor.TaxId)).IsRequired().HasMaxLength(DistributorConsts.TaxIdMaxLength);
+        b.HasMany(x => x.IdentityUsers).WithOne().HasForeignKey(x => x.DistributorId).IsRequired().OnDelete(DeleteBehavior.NoAction);
     });
+
+        builder.Entity<DistributorIdentityUser>(b =>
+{
+b.ToTable(TestMDMDbProperties.DbTablePrefix + "DistributorIdentityUser" + TestMDMDbProperties.DbSchema);
+b.ConfigureByConvention();
+
+b.HasKey(
+x => new { x.DistributorId, x.IdentityUserId }
+);
+
+b.HasOne<Distributor>().WithMany(x => x.IdentityUsers).HasForeignKey(x => x.DistributorId).IsRequired().OnDelete(DeleteBehavior.NoAction);
+b.HasOne<IdentityUser>().WithMany().HasForeignKey(x => x.IdentityUserId).IsRequired().OnDelete(DeleteBehavior.NoAction);
+
+b.HasIndex(
+    x => new { x.DistributorId, x.IdentityUserId }
+);
+});
     }
 }

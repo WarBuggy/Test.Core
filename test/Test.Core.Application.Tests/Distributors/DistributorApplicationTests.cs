@@ -4,6 +4,7 @@ using Shouldly;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories;
 using Xunit;
+using TestMDM.Distributors;
 
 namespace Test.Core.Distributors
 {
@@ -27,8 +28,8 @@ namespace Test.Core.Distributors
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("16d3bcff-10c4-46f6-8478-c8b08f3cb7ea")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("fc1ceccd-4d10-43d6-a940-833eecba1d78")).ShouldBe(true);
+            result.Items.Any(x => x.Distributor.Id == Guid.Parse("16d3bcff-10c4-46f6-8478-c8b08f3cb7ea")).ShouldBe(true);
+            result.Items.Any(x => x.Distributor.Id == Guid.Parse("fc1ceccd-4d10-43d6-a940-833eecba1d78")).ShouldBe(true);
         }
 
         [Fact]
@@ -49,7 +50,7 @@ namespace Test.Core.Distributors
             var input = new DistributorCreateDto
             {
                 CompanyName = "b",
-                TaxID = "4"
+                TaxId = "4"
             };
 
             // Act
@@ -60,7 +61,7 @@ namespace Test.Core.Distributors
 
             result.ShouldNotBe(null);
             result.CompanyName.ShouldBe("b");
-            result.TaxID.ShouldBe("4");
+            result.TaxId.ShouldBe("4");
         }
 
         [Fact]
@@ -70,7 +71,7 @@ namespace Test.Core.Distributors
             var input = new DistributorUpdateDto()
             {
                 CompanyName = "8",
-                TaxID = "b"
+                TaxId = "b"
             };
 
             // Act
@@ -81,7 +82,7 @@ namespace Test.Core.Distributors
 
             result.ShouldNotBe(null);
             result.CompanyName.ShouldBe("8");
-            result.TaxID.ShouldBe("b");
+            result.TaxId.ShouldBe("b");
         }
 
         [Fact]

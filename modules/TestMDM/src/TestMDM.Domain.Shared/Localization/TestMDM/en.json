@@ -24,6 +24,7 @@
     "Menu:Distributors": "Distributors",
     "TabTitle:DistributorHQ": "Head Office Distributor",
     "DisplayName:DistributorHQName": "Head Office Distributor Name",
-    "DisplayName:DistributorHQTaxId": "Head Office Distributor Tax ID"
+    "DisplayName:DistributorHQTaxId": "Head Office Distributor Tax ID",
+    "IdentityUsers": "Identity users"
   }
 }

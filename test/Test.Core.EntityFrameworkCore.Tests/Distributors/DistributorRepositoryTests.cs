@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Test.Core.Distributors;
 using Test.Core.EntityFrameworkCore;
+using TestMDM.Distributors;
 using Xunit;
 
 namespace Test.Core.Distributors
@@ -26,7 +27,7 @@ namespace Test.Core.Distributors
                 // Act
                 var result = await _distributorRepository.GetListAsync(
                     companyName: "9",
-                    taxID: "2"
+                    taxId: "2"
                 );
 
                 // Assert
@@ -45,7 +46,7 @@ namespace Test.Core.Distributors
                 // Act
                 var result = await _distributorRepository.GetCountAsync(
                     companyName: "0",
-                    taxID: "2"
+                    taxId: "2"
                 );
 
                 // Assert

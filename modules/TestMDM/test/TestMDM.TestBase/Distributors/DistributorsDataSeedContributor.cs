@@ -29,16 +29,16 @@ namespace TestMDM.Distributors
 
             await _distributorRepository.InsertAsync(new Distributor
             (
-                id: Guid.Parse("a45f1928-f55e-4827-bbd2-e5c63704c58c"),
-                companyName: "c96586542036410994e086d43adccaebb44a2648ddca4aecb22f61a998dee573f268a21eadcd4671b516d8ec218f15c3acc67bd1a1ff4fce8abab0114e9b250fb3db185a8e3042caaaaa97cd25e31500e3f2d9494b0a40ee9857824907f5dc8c640277ec79b146f382801dcf59ca84e9f1629214b42a4739ae8737135a441d229388ff405fb54a93bd141cdeb3f9327bb85e79a35f92",
-                taxId: "08d3e5a029244ef397820a586a264a644e35ed2df7e049fc8a"
+                id: Guid.Parse("7e256683-82b8-4b08-81a1-a1b0e5b2057e"),
+                companyName: "d7ca572f9705458a9223131d5fe0087446531b60a1f348b199ae4e507ceacb9918b478dd09344e1da3f313476574ccc17d6352e4fc79431eb4ef6de936db49468c5355676f464f1bb0a3f8067d706048b125501b70f34a7bbb643fc2af5eecb9106d1abac17e45fa8dfd4d63c257cd0a1f707dcb9b8e46dcb5f98a7509fb08e453bbb6a06297450b8a7a5ac023e883a23b54462cb7f6",
+                taxId: "c76f0f7d756b47859c47b27a2c1a162b886c66feb5b8409097"
             ));
 
             await _distributorRepository.InsertAsync(new Distributor
             (
-                id: Guid.Parse("5b636648-472a-412c-bd87-cd385268ca71"),
-                companyName: "67e4852dced745fc91a2a67aa098488ab0c3955a49ae47118587c831276ddecba8a1b01211d8458a9aa469630d053ec3ec65edc2147642af8bbd30066df4e74513581de8a9004183befbc0e9e00f3cb5d4954d915b3a437e93e007959cb61d2feef3fa9fb4a048189c3fc087ad85689acee1917784674742ad64b478050e0ffee4b0f55ae7e842a5867732172db097b9f1dc9173811c",
-                taxId: "0cb0814e0898428abe951d47d4805e0b555be4682c8747ba89"
+                id: Guid.Parse("4bfdf9bb-39ef-454b-b5e3-9fa498b757d1"),
+                companyName: "5d9be99b1b3b48a9a9a03b7d1f91c1b12f3dbd2b949448ac92af4186238d1dbea7127a594a754b47a0eb1e159a784baa89d1e147909444b1bd94baed0c83932f8468ac14f73a40cfb1a1b1c617e195c5f5bd1a5d0f1548faa33972b00a77853ac13992903957411fb9d8ee2d6a8dbe4b59dd24a193b541e7875fc93b321bce0efe0ea5a2e7a04e0f9c22b4e0afc6e00fce5e95ff227c",
+                taxId: "577518dcfd7845d79bb2f477434b80b055179bd0bb6f4ee9a5"
             ));
 
             await _unitOfWorkManager.Current.SaveChangesAsync();
