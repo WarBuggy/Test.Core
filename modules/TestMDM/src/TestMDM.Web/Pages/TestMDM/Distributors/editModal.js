@@ -12,7 +12,7 @@ abp.modals.distributorEdit = function () {
             $('#IdentityUserLookup').select2({
                 dropdownParent: $('#DistributorEditModal'),
                 ajax: {
-                    url: abp.appPath + 'api/app/distributors/identity-user-lookup',
+                    url: abp.appPath + 'api/test-m-d-m/distributors/identity-user-lookup',
                     type: 'GET',
                     data: function (params) {
                         return { filter: params.term, maxResultCount: 10 }

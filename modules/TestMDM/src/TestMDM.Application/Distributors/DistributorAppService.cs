@@ -26,7 +26,8 @@ namespace TestMDM.Distributors
         public DistributorsAppService(IDistributorRepository distributorRepository, DistributorManager distributorManager, IRepository<IdentityUser, Guid> identityUserRepository)
         {
             _distributorRepository = distributorRepository;
-            _distributorManager = distributorManager; _identityUserRepository = identityUserRepository;
+            _distributorManager = distributorManager; 
+            _identityUserRepository = identityUserRepository;
         }
 
         public virtual async Task<PagedResultDto<DistributorWithNavigationPropertiesDto>> GetListAsync(GetDistributorsInput input)

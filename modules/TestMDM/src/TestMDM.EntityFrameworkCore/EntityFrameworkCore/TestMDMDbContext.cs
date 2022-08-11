@@ -3,6 +3,7 @@ using Volo.Abp.EntityFrameworkCore.Modeling;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.Identity.EntityFrameworkCore;
 
 namespace TestMDM.EntityFrameworkCore;
 
@@ -23,7 +24,7 @@ public class TestMDMDbContext : AbpDbContext<TestMDMDbContext>, ITestMDMDbContex
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-
+        builder.ConfigureIdentityPro();
         builder.ConfigureTestMDM();
     }
 }
