@@ -1,5 +1,4 @@
 using Volo.Abp.Identity;
-using Volo.Abp.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,13 +52,24 @@ namespace TestMDM.Distributors
 
         protected virtual async Task<IQueryable<DistributorWithNavigationProperties>> GetQueryForNavigationPropertiesAsync()
         {
-            return from distributor in (await GetDbSetAsync())
+            //return from company in (await GetDbSetAsync())
 
-                   select new DistributorWithNavigationProperties
-                   {
-                       Distributor = distributor,
-                       IdentityUsers = new List<IdentityUser>()
-                   };
+            //       select new CompanyWithNavigationProperties
+            //       {
+            //           Company = company,
+            //           IdentityUsers = new List<IdentityUser>()
+            //       };
+
+            var dbContext = await GetDbContextAsync();
+
+            return (await GetDbSetAsync()).Include(x => x.IdentityUsers)
+                 .Select(distributor => new DistributorWithNavigationProperties
+                 {
+                     Distributor = distributor,
+                     IdentityUsers = (from distributorIdentityUsers in distributor.IdentityUsers
+                                      join _identityUser in dbContext.Set<IdentityUser>() on distributorIdentityUsers.IdentityUserId equals _identityUser.Id
+                                      select _identityUser).ToList()
+                 });
         }
 
         protected virtual IQueryable<DistributorWithNavigationProperties> ApplyFilter(

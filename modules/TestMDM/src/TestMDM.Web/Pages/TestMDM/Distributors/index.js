@@ -1,27 +1,27 @@
 $(function () {
     var l = abp.localization.getResource("TestMDM");
-	
-	var distributorService = window.testMDM.distributors.distributor;
-	
-	
+
+    var distributorService = window.testMDM.distributors.distributor;
+
+
     var createModal = new abp.ModalManager({
         viewUrl: abp.appPath + "TestMDM/Distributors/CreateModal",
         scriptUrl: "/Pages/TestMDM/Distributors/createModal.js",
         modalClass: "distributorCreate"
     });
 
-	var editModal = new abp.ModalManager({
+    var editModal = new abp.ModalManager({
         viewUrl: abp.appPath + "TestMDM/Distributors/EditModal",
         scriptUrl: "/Pages/TestMDM/Distributors/editModal.js",
         modalClass: "distributorEdit"
     });
 
-	var getFilter = function() {
+    var getFilter = function () {
         return {
             filterText: $("#FilterText").val(),
             companyName: $("#CompanyNameFilter").val(),
-			taxId: $("#TaxIdFilter").val(),
-			identityUserId: $("#IdentityUserFilter").val()
+            taxId: $("#TaxIdFilter").val(),
+            identityUserId: $("#IdentityUserFilter").val()
         };
     };
 
@@ -45,8 +45,8 @@ $(function () {
                                 visible: abp.auth.isGranted('TestMDM.Distributors.Edit'),
                                 action: function (data) {
                                     editModal.open({
-                                     id: data.record.distributor.id
-                                     });
+                                        id: data.record.distributor.id
+                                    });
                                 }
                             },
                             {
@@ -66,8 +66,22 @@ $(function () {
                         ]
                 }
             },
-			{ data: "distributor.companyName" },
-			{ data: "distributor.taxId" }
+            { data: "distributor.companyName" },
+            { data: "distributor.taxId" },
+            {
+                data: "identityUsers",
+                render: function (data, type, row) {
+                    if (!data || !Array.isArray(data)) {
+                        return "";
+                    }
+                    let strings = [];
+                    for (let i = 0; i < data.length; i++) {
+                        let user = data[i];
+                        strings.push(`<li>${user.name}, ${user.email}</li>`);
+                    }
+                    return strings.join("");
+                }
+            }
         ]
     }));
 
@@ -84,7 +98,7 @@ $(function () {
         createModal.open();
     });
 
-	$("#SearchForm").submit(function (e) {
+    $("#SearchForm").submit(function (e) {
         e.preventDefault();
         dataTable.ajax.reload();
     });
@@ -99,26 +113,26 @@ $(function () {
         }
     });
 
-    $('#AdvancedFilterSection select').change(function() {
+    $('#AdvancedFilterSection select').change(function () {
         dataTable.ajax.reload();
     });
-    
-                $('#IdentityUserFilter').select2({
-                ajax: {
-                    url: abp.appPath + 'api/app/distributors/identity-user-lookup',
-                    type: 'GET',
-                    data: function (params) {
-                        return { filter: params.term, maxResultCount: 10 }
-                    },
-                    processResults: function (data) {
-                        var mappedItems = _.map(data.items, function (item) {
-                            return { id: item.id, text: item.displayName };
-                        });
-                        mappedItems.unshift({ id: "", text: ' - ' });
 
-                        return { results: mappedItems };
-                    }
-                }
-            });
-        
+    $('#IdentityUserFilter').select2({
+        ajax: {
+            url: abp.appPath + 'api/test-m-d-m/distributors/identity-user-lookup',
+            type: 'GET',
+            data: function (params) {
+                return { filter: params.term, maxResultCount: 10 }
+            },
+            processResults: function (data) {
+                var mappedItems = _.map(data.items, function (item) {
+                    return { id: item.id, text: item.displayName };
+                });
+                mappedItems.unshift({ id: "", text: ' - ' });
+
+                return { results: mappedItems };
+            }
+        }
+    });
+
 });
