@@ -94,5 +94,6 @@ public class CoreDbContext :
         //    //...
         //});
         builder.ConfigureTestMDM();
-    }
+        builder.ConfigureIdentity();
+        }
 }

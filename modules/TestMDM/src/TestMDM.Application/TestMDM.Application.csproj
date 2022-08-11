@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\common.props" />
 
@@ -10,7 +10,7 @@
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Ddd.Application" Version="5.3.3" />
 		<PackageReference Include="Volo.Abp.AutoMapper" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.Identity.Pro.Application" Version="5.3.3" />
+		<ProjectReference Include="..\..\..\Volo.Identity.Pro\src\Volo.Abp.Identity.Pro.Application\Volo.Abp.Identity.Pro.Application.csproj" />
 		<ProjectReference Include="..\TestMDM.Application.Contracts\TestMDM.Application.Contracts.csproj" />
 		<ProjectReference Include="..\TestMDM.Domain\TestMDM.Domain.csproj" />
 	</ItemGroup>
