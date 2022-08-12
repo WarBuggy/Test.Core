@@ -19,6 +19,7 @@ using Volo.Saas.Editions;
 using Volo.Saas.Tenants;
 using Volo.Abp.Gdpr;
 using TestMDM.EntityFrameworkCore;
+using Inquiry.EntityFrameworkCore;
 
 namespace Test.Core.EntityFrameworkCore;
 
@@ -94,5 +95,6 @@ public class CoreDbContext :
         //    //...
         //});
         builder.ConfigureTestMDM();
-    }
+        builder.ConfigureInquiry();
+        }
 }

@@ -22,6 +22,7 @@ using Volo.Abp.BlobStoring.Database;
 using Volo.Abp.Commercial.SuiteTemplates;
 using Volo.Abp.Gdpr;
 using TestMDM;
+using Inquiry;
 
 namespace Test.Core;
 
@@ -45,6 +46,7 @@ namespace Test.Core;
     typeof(BlobStoringDatabaseDomainModule)
     )]
 [DependsOn(typeof(TestMDMDomainModule))]
+    [DependsOn(typeof(InquiryDomainModule))]
     public class CoreDomainModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

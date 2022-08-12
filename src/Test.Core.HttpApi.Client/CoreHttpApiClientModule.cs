@@ -14,6 +14,7 @@ using Volo.Saas.Host;
 using Volo.Abp.VirtualFileSystem;
 using Volo.Abp.Gdpr;
 using TestMDM;
+using Inquiry;
 
 namespace Test.Core;
 
@@ -34,6 +35,7 @@ namespace Test.Core;
     typeof(TextTemplateManagementHttpApiClientModule)
 )]
 [DependsOn(typeof(TestMDMHttpApiClientModule))]
+    [DependsOn(typeof(InquiryHttpApiClientModule))]
     public class CoreHttpApiClientModule : AbpModule
 {
     public const string RemoteServiceName = "Default";

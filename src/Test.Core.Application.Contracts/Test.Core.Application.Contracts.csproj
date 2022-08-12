@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Test.Core.Domain.Shared\Test.Core.Domain.Shared.csproj" />
-  <ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.Application.Contracts\TestMDM.Application.Contracts.csproj" /></ItemGroup>
+  <ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.Application.Contracts\TestMDM.Application.Contracts.csproj" /><ProjectReference Include="..\..\modules\Inquiry\src\Inquiry.Application.Contracts\Inquiry.Application.Contracts.csproj" /></ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.PermissionManagement.Application.Contracts" Version="5.3.3" />
