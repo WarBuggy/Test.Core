@@ -1,15 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
+	<Import Project="..\..\common.props" />
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Inquiry</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Inquiry</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="5.3.3" />
-    <ProjectReference Include="..\Inquiry.Domain.Shared\Inquiry.Domain.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Ddd.Domain" Version="5.3.3" />
+		<ProjectReference Include="..\..\..\TestMDM\src\TestMDM.Domain\TestMDM.Domain.csproj" />
+		<ProjectReference Include="..\Inquiry.Domain.Shared\Inquiry.Domain.Shared.csproj" />
+		<PackageReference Include="Volo.Abp.Identity.Pro.Domain" Version="5.3.3" />
+	</ItemGroup>
 
 </Project>

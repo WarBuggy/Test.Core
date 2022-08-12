@@ -1,17 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
+	<Import Project="..\..\common.props" />
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Inquiry</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Inquiry</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Application" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="5.3.3" />
-    <ProjectReference Include="..\Inquiry.Application.Contracts\Inquiry.Application.Contracts.csproj" />
-    <ProjectReference Include="..\Inquiry.Domain\Inquiry.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Ddd.Application" Version="5.3.3" />
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="5.3.3" />
+		<ProjectReference Include="..\..\..\TestMDM\src\TestMDM.Application\TestMDM.Application.csproj" />
+		<ProjectReference Include="..\Inquiry.Application.Contracts\Inquiry.Application.Contracts.csproj" />
+		<ProjectReference Include="..\Inquiry.Domain\Inquiry.Domain.csproj" />
+		<PackageReference Include="Volo.Abp.Identity.Pro.Application" Version="5.3.3" />
+	</ItemGroup>
 
 </Project>
