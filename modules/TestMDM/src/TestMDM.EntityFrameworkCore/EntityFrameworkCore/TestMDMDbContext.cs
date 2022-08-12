@@ -1,9 +1,9 @@
 using TestMDM.Distributors;
-using Volo.Abp.EntityFrameworkCore.Modeling;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Identity.EntityFrameworkCore;
+using Volo.Abp.Identity;
 
 namespace TestMDM.EntityFrameworkCore;
 
@@ -11,6 +11,9 @@ namespace TestMDM.EntityFrameworkCore;
 public class TestMDMDbContext : AbpDbContext<TestMDMDbContext>, ITestMDMDbContext
 {
     public DbSet<Distributor> Distributors { get; set; }
+    public DbSet<IdentityUser> IdentityUsers { get; set; }
+    public DbSet<DistributorIdentityUser> DistributorIdentityUsers { get; set; }
+
     /* Add DbSet for each Aggregate Root here. Example:
      * public DbSet<Question> Questions { get; set; }
      */

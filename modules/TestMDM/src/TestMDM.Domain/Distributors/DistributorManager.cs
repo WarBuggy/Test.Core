@@ -39,7 +39,7 @@ namespace TestMDM.Distributors
         public async Task<Distributor> UpdateAsync(
             Guid id,
             List<Guid> identityUserIds,
-        string companyName, string taxId, [CanBeNull] string concurrencyStamp = null
+            string companyName, string taxId, [CanBeNull] string concurrencyStamp = null
         )
         {
             var queryable = await _distributorRepository.WithDetailsAsync(x => x.IdentityUsers);

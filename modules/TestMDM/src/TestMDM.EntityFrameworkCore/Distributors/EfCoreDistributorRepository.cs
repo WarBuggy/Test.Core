@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using TestMDM.EntityFrameworkCore;
+using Volo.Abp.Identity.EntityFrameworkCore;
 
 namespace TestMDM.Distributors
 {
@@ -122,6 +123,71 @@ namespace TestMDM.Distributors
                     .WhereIf(!string.IsNullOrWhiteSpace(filterText), e => e.CompanyName.Contains(filterText) || e.TaxId.Contains(filterText))
                     .WhereIf(!string.IsNullOrWhiteSpace(companyName), e => e.CompanyName.Contains(companyName))
                     .WhereIf(!string.IsNullOrWhiteSpace(taxId), e => e.TaxId.Contains(taxId));
+        }
+        protected virtual IQueryable<AbpIdentityUserWithNavigationProperties> ApplyFilterAbpIdentityUser(
+        IQueryable<AbpIdentityUserWithNavigationProperties> query,
+        string filterText,
+        Guid? roleId = null,
+        Guid? organizationUnitId = null,
+        string userName = null,
+        string phoneNumber = null,
+        string emailAddress = null,
+        bool? isLockedOut = null,
+        bool? notActive = null)
+        {
+            return query
+                .WhereIf(
+                !filterText.IsNullOrWhiteSpace(),
+                u =>
+                    u.IdentityUser.UserName.Contains(filterText) ||
+                    u.IdentityUser.Email.Contains(filterText) ||
+                    (u.IdentityUser.Name != null && u.IdentityUser.Name.Contains(filterText)) ||
+                    (u.IdentityUser.Surname != null && u.IdentityUser.Surname.Contains(filterText)) ||
+                    (u.IdentityUser.PhoneNumber != null && u.IdentityUser.PhoneNumber.Contains(filterText))
+            )
+            .WhereIf(roleId.HasValue, u => u.IdentityUser.Roles.Any(x => x.RoleId == roleId.Value))
+            .WhereIf(organizationUnitId.HasValue, u => u.IdentityUser.OrganizationUnits.Any(x => x.OrganizationUnitId == organizationUnitId.Value))
+            .WhereIf(!string.IsNullOrWhiteSpace(userName), u => u.IdentityUser.UserName == userName)
+            .WhereIf(!string.IsNullOrWhiteSpace(phoneNumber), u => u.IdentityUser.PhoneNumber == phoneNumber)
+            .WhereIf(!string.IsNullOrWhiteSpace(emailAddress), u => u.IdentityUser.Email == emailAddress)
+            .WhereIf(isLockedOut == true, u => u.IdentityUser.LockoutEnabled && u.IdentityUser.LockoutEnd.Value.CompareTo(DateTime.UtcNow) > 0)
+            .WhereIf(notActive == true, u => !u.IdentityUser.IsActive);
+        }
+
+        public async Task<List<AbpIdentityUserWithNavigationProperties>> GetIdentityUserListWithNavigationPropertiesAsync(
+            string sorting = null,
+            int maxResultCount = int.MaxValue,
+            int skipCount = 0,
+            string filterText = null,
+            bool includeDetails = false,
+            Guid? roleId = null,
+            Guid? organizationUnitId = null,
+            string userName = null,
+            string phoneNumber = null,
+            string emailAddress = null,
+            bool? isLockedOut = null,
+            bool? notActive = null,
+            CancellationToken cancellationToken = default)
+        {
+            var query = await GetQueryForIdentityUserNavigationPropertiesAsync(includeDetails);
+            query = ApplyFilterAbpIdentityUser(query, filterText, roleId, organizationUnitId, userName, phoneNumber, emailAddress, isLockedOut, notActive);
+            query = query.OrderBy(sorting.IsNullOrWhiteSpace() ? nameof(IdentityUser.UserName) : sorting);
+            return await query.PageBy(skipCount, maxResultCount).ToListAsync(cancellationToken);
+        }
+
+        protected virtual async Task<IQueryable<AbpIdentityUserWithNavigationProperties>> GetQueryForIdentityUserNavigationPropertiesAsync(bool includeDetails)
+        {
+            var dbContext = await GetDbContextAsync();
+
+            return dbContext.IdentityUsers.IncludeDetails(includeDetails)
+                .Select(identityUsers => new AbpIdentityUserWithNavigationProperties
+                {
+                    IdentityUser = identityUsers,
+                    Distributors = (from distributorIdentityUser in dbContext.DistributorIdentityUsers
+                                    join distributor in dbContext.Distributors on distributorIdentityUser.DistributorId equals distributor.Id
+                                    where distributorIdentityUser.IdentityUserId == identityUsers.Id
+                                    select distributor).ToList(),
+                });
         }
     }
 }

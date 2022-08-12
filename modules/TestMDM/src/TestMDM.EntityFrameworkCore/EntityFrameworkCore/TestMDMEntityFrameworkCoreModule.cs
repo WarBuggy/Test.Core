@@ -2,6 +2,8 @@ using TestMDM.Distributors;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
+using Volo.Abp.Identity;
+using Volo.Abp.Identity.EntityFrameworkCore;
 
 namespace TestMDM.EntityFrameworkCore;
 
@@ -18,8 +20,8 @@ public class TestMDMEntityFrameworkCoreModule : AbpModule
             /* Add custom repositories here. Example:
              * options.AddRepository<Question, EfCoreQuestionRepository>();
              */
-            options.AddRepository<Distributor, Distributors.EfCoreDistributorRepository>();
-
+            options.AddRepository<Distributor, EfCoreDistributorRepository>();
+            options.AddRepository<IdentityUser, EfCoreIdentityRoleRepository>();
         });
     }
 }
