@@ -20,15 +20,15 @@ public class InquiryMenuContributor : IMenuContributor
 
     private static ApplicationMenuItem AddModuleMenuItem(MenuConfigurationContext context)
     {
-        var moduleMenu = new ApplicationMenuItem(
-            InquiryMenus.Prefix,
-            displayName: "Inquiry",
-            "~/Inquiry",
-            icon: "fa fa-globe");
+        //var moduleMenu = new ApplicationMenuItem(
+        //    InquiryMenus.Prefix,
+        //    displayName: "Inquiry",
+        //    "~/Inquiry",
+        //    icon: "fa fa-globe");
 
-        //Add main menu items.
-        context.Menu.Items.AddIfNotContains(moduleMenu);
-        return moduleMenu;
-        // return null;
+        ////Add main menu items.
+        //context.Menu.Items.AddIfNotContains(moduleMenu);
+        //return moduleMenu;
+        return null;
     }
 }
