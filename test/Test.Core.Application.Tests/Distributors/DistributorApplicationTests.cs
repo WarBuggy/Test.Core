@@ -4,6 +4,7 @@ using Shouldly;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories;
 using Xunit;
+using TestMDM.Distributors;
 
 namespace Test.Core.Distributors
 {
@@ -49,7 +50,7 @@ namespace Test.Core.Distributors
             var input = new DistributorCreateDto
             {
                 CompanyName = "b",
-                TaxID = "4"
+                TaxId = "4"
             };
 
             // Act
@@ -60,7 +61,7 @@ namespace Test.Core.Distributors
 
             result.ShouldNotBe(null);
             result.CompanyName.ShouldBe("b");
-            result.TaxID.ShouldBe("4");
+            result.TaxId.ShouldBe("4");
         }
 
         [Fact]
@@ -70,7 +71,7 @@ namespace Test.Core.Distributors
             var input = new DistributorUpdateDto()
             {
                 CompanyName = "8",
-                TaxID = "b"
+                TaxId = "b"
             };
 
             // Act
@@ -81,7 +82,7 @@ namespace Test.Core.Distributors
 
             result.ShouldNotBe(null);
             result.CompanyName.ShouldBe("8");
-            result.TaxID.ShouldBe("b");
+            result.TaxId.ShouldBe("b");
         }
 
         [Fact]
