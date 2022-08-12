@@ -22,7 +22,7 @@
     <PackageReference Include="Volo.Saas.EntityFrameworkCore" Version="5.3.3" />
     <PackageReference Include="Volo.Abp.TextTemplateManagement.EntityFrameworkCore" Version="5.3.3" />
     <PackageReference Include="Volo.Abp.Gdpr.EntityFrameworkCore" Version="5.3.3" />
-  <ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.EntityFrameworkCore\TestMDM.EntityFrameworkCore.csproj" /></ItemGroup>
+  <ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.EntityFrameworkCore\TestMDM.EntityFrameworkCore.csproj" /><ProjectReference Include="..\..\modules\Inquiry\src\Inquiry.EntityFrameworkCore\Inquiry.EntityFrameworkCore.csproj" /></ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">

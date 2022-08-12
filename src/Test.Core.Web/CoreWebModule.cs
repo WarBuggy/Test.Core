@@ -57,6 +57,7 @@ using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Volo.Saas.Host;
 using TestMDM.Web;
+using Inquiry.Web;
 
 namespace Test.Core.Web;
 
@@ -84,7 +85,8 @@ namespace Test.Core.Web;
     typeof(AbpAspNetCoreSerilogModule)
     )]
 [DependsOn(typeof(TestMDMWebModule))]
-public class CoreWebModule : AbpModule
+[DependsOn(typeof(InquiryWebModule))]
+    public class CoreWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

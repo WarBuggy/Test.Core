@@ -16,6 +16,7 @@ using Volo.Abp.SettingManagement;
 using Volo.Abp.TextTemplateManagement;
 using Volo.Saas.Host;
 using TestMDM;
+using Inquiry;
 
 namespace Test.Core;
 
@@ -37,6 +38,7 @@ namespace Test.Core;
     typeof(TextTemplateManagementApplicationModule)
     )]
 [DependsOn(typeof(TestMDMApplicationModule))]
+    [DependsOn(typeof(InquiryApplicationModule))]
     public class CoreApplicationModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

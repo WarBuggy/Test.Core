@@ -15,6 +15,7 @@ using Volo.Abp.SettingManagement;
 using Volo.Abp.TextTemplateManagement;
 using Volo.Abp.Gdpr;
 using TestMDM;
+using Inquiry;
 
 namespace Test.Core;
 
@@ -34,6 +35,7 @@ namespace Test.Core;
     typeof(TextTemplateManagementHttpApiModule)
     )]
 [DependsOn(typeof(TestMDMHttpApiModule))]
+    [DependsOn(typeof(InquiryHttpApiModule))]
     public class CoreHttpApiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

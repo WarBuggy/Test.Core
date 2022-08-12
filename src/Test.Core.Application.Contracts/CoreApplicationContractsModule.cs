@@ -12,6 +12,7 @@ using Volo.Abp.TextTemplateManagement;
 using Volo.Saas.Host;
 using Volo.Abp.Gdpr;
 using TestMDM;
+using Inquiry;
 
 namespace Test.Core;
 
@@ -32,6 +33,7 @@ namespace Test.Core;
     typeof(TextTemplateManagementApplicationContractsModule)
 )]
 [DependsOn(typeof(TestMDMApplicationContractsModule))]
+    [DependsOn(typeof(InquiryApplicationContractsModule))]
     public class CoreApplicationContractsModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

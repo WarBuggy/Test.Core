@@ -19,6 +19,7 @@ using Volo.Abp.BlobStoring.Database;
 using Volo.Abp.Gdpr;
 using Volo.Abp.GlobalFeatures;
 using TestMDM;
+using Inquiry;
 
 namespace Test.Core;
 
@@ -39,6 +40,7 @@ namespace Test.Core;
     typeof(BlobStoringDatabaseDomainSharedModule)
     )]
 [DependsOn(typeof(TestMDMDomainSharedModule))]
+    [DependsOn(typeof(InquiryDomainSharedModule))]
     public class CoreDomainSharedModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

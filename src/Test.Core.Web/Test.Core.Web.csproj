@@ -18,7 +18,7 @@
     <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="6.0.5" />
-  <ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.Web\TestMDM.Web.csproj" /></ItemGroup>
+  <ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.Web\TestMDM.Web.csproj" /><ProjectReference Include="..\..\modules\Inquiry\src\Inquiry.Web\Inquiry.Web.csproj" /></ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Autofac" Version="5.3.3" />
