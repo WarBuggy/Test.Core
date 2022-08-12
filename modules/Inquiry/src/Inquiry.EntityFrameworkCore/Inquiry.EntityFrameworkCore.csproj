@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\common.props" />
 
@@ -11,7 +11,7 @@
 		<PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="5.3.3" />
 		<ProjectReference Include="..\..\..\TestMDM\src\TestMDM.EntityFrameworkCore\TestMDM.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\Inquiry.Domain\Inquiry.Domain.csproj" />
-		<PackageReference Include="Volo.Abp.Identity.Pro.EntityFrameworkCore" Version="5.3.3" />
+		<ProjectReference Include="..\..\..\Volo.Identity.Pro\src\Volo.Abp.Identity.Pro.EntityFrameworkCore\Volo.Abp.Identity.Pro.EntityFrameworkCore.csproj" />
 	</ItemGroup>
 
 </Project>

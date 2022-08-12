@@ -96,5 +96,6 @@ public class CoreDbContext :
         //});
         builder.ConfigureTestMDM();
         builder.ConfigureInquiry();
+            builder.ConfigureIdentity();
         }
 }

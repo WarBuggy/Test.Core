@@ -11,7 +11,7 @@
 		<PackageReference Include="Volo.Abp.Ddd.Domain" Version="5.3.3" />
 		<ProjectReference Include="..\..\..\TestMDM\src\TestMDM.Domain\TestMDM.Domain.csproj" />
 		<ProjectReference Include="..\Inquiry.Domain.Shared\Inquiry.Domain.Shared.csproj" />
-		<PackageReference Include="Volo.Abp.Identity.Pro.Domain" Version="5.3.3" />
+		<ProjectReference Include="..\..\..\Volo.Identity.Pro\src\Volo.Abp.Identity.Pro.Domain\Volo.Abp.Identity.Pro.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

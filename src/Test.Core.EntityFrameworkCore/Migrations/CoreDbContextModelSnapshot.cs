@@ -32,7 +32,8 @@ namespace Test.Core.Migrations
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)")
                         .HasColumnName("CompanyName");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -77,7 +78,8 @@ namespace Test.Core.Migrations
 
                     b.Property<string>("TaxId")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
                         .HasColumnName("TaxId");
 
                     b.Property<Guid?>("TenantId")
