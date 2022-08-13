@@ -1,6 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Inquiry.Distributors;
+using Microsoft.EntityFrameworkCore;
+using TestMDM.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.Identity;
+using Volo.Abp.Identity.EntityFrameworkCore;
 
 namespace Inquiry.EntityFrameworkCore;
 
@@ -20,7 +24,8 @@ public class InquiryDbContext : AbpDbContext<InquiryDbContext>, IInquiryDbContex
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-
+        builder.ConfigureIdentityPro();
+        builder.ConfigureTestMDM();
         builder.ConfigureInquiry();
     }
 }

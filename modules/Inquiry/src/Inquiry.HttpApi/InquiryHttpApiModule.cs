@@ -4,6 +4,7 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Microsoft.Extensions.DependencyInjection;
+using TestMDM.Localization;
 
 namespace Inquiry;
 
@@ -27,6 +28,9 @@ public class InquiryHttpApiModule : AbpModule
             options.Resources
                 .Get<InquiryResource>()
                 .AddBaseTypes(typeof(AbpUiResource));
+            options.Resources
+              .Get<TestMDMResource>()
+              .AddBaseTypes(typeof(AbpUiResource));
         });
     }
 }

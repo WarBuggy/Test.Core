@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Inquiry.Distributors;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 
 namespace Inquiry.EntityFrameworkCore;
@@ -14,9 +16,9 @@ public class InquiryEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<InquiryDbContext>(options =>
         {
-                /* Add custom repositories here. Example:
-                 * options.AddRepository<Question, EfCoreQuestionRepository>();
-                 */
+            /* Add custom repositories here. Example:
+             * options.AddRepository<Question, EfCoreQuestionRepository>();
+             */
         });
     }
 }

@@ -8,10 +8,8 @@ using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
-using Inquiry.Permissions;
 
 namespace Inquiry.Web;
-
 [DependsOn(
     typeof(InquiryApplicationContractsModule),
     typeof(AbpAspNetCoreMvcUiThemeSharedModule),
@@ -52,7 +50,8 @@ public class InquiryWebModule : AbpModule
 
         Configure<RazorPagesOptions>(options =>
         {
-                //Configure authorization.
-            });
+            //Configure authorization.
+        });
     }
 }
+

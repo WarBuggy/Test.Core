@@ -1,0 +1,58 @@
+@page
+@using Inquiry.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Inquiry.Distributors;
+@using Inquiry.Web.Pages.Distributors;
+@using System.Globalization
+@inject IHtmlLocalizer<InquiryResource> L
+@model CreateModalModel
+@{
+    Layout = null;
+}
+
+<form data-ajaxForm="true" asp-page="/TestMDM/Distributors/CreateModal" autocomplete="off">
+    <abp-modal id="DistributorCreateModal">
+        <abp-modal-header title="@L["NewDistributor"].Value"></abp-modal-header>
+
+        <abp-modal-body>
+            <abp-tabs>
+                <abp-tab title="@L["Tab:Distributor:Distributor"].Value">
+
+                    <abp-input asp-for="Distributor.CompanyName" />
+
+                    <abp-input asp-for="Distributor.TaxId" />
+
+
+                </abp-tab>
+                <abp-tab title="@L["Tab:Distributor:IdentityUsers"].Value">
+                    <div class="input-group mb-3">
+                        <select id="IdentityUserLookup"
+                                name="IdentityUserLookup"
+                                class="custom-select form-control"
+                                style="width: 85%"
+                                data-value="">
+                        </select>
+                        <abp-button button-type="Info" id="AddIdentityUserButton" class="text-light">@L["Add"]</abp-button>
+                    </div>
+
+                    <abp-row>
+                        <abp-table style="display:none" id="IdentityUserTable">
+                            <thead Theme="Dark">
+                                <tr style="text-align: center; vertical-align: middle;">
+                                    <th scope="Column" style="text-align: left">@L["SelectDisplay:Distributor:Name"]</th>
+                                    <th scope="Column"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="IdentityUserTableRows">
+                            </tbody>
+                        </abp-table>
+                    </abp-row>
+                </abp-tab>
+
+            </abp-tabs>
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</form>
