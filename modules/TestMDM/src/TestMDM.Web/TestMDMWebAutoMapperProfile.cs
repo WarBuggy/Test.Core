@@ -12,6 +12,6 @@ public class TestMDMWebAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
 
-        CreateMap<DistributorDto, DistributorUpdateDto>();
+        //CreateMap<DistributorDto, DistributorUpdateDto>();
     }
 }

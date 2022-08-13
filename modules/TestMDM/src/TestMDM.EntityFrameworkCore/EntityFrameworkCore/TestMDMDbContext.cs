@@ -9,7 +9,7 @@ namespace TestMDM.EntityFrameworkCore;
 [ConnectionStringName(TestMDMDbProperties.ConnectionStringName)]
 public class TestMDMDbContext : AbpDbContext<TestMDMDbContext>, ITestMDMDbContext
 {
-    public DbSet<Distributor> Distributors { get; set; }
+    // public DbSet<Distributor> Distributors { get; set; }
     /* Add DbSet for each Aggregate Root here. Example:
      * public DbSet<Question> Questions { get; set; }
      */

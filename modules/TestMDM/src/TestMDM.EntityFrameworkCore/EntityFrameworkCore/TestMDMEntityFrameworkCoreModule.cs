@@ -18,7 +18,7 @@ public class TestMDMEntityFrameworkCoreModule : AbpModule
             /* Add custom repositories here. Example:
              * options.AddRepository<Question, EfCoreQuestionRepository>();
              */
-            options.AddRepository<Distributor, Distributors.EfCoreDistributorRepository>();
+            // options.AddRepository<Distributor, Distributors.EfCoreDistributorRepository>();
 
         });
     }

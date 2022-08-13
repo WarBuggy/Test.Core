@@ -31,7 +31,7 @@ public class TestMDMMenuContributor : IMenuContributor
         var moduleMenu = new ApplicationMenuItem(
             TestMDMMenus.Prefix,
             displayName: l["Menu:TestMDM"],
-            "~/TestMDM",
+            null,
             icon: "fa fa-globe")
             .RequireFeatures(TestMDMFeatures.Enable)
             .RequirePermissions(TestMDMPermissions.Distributors.Default);
