@@ -11,19 +11,8 @@
     "Permission:Create": "Create",
     "Permission:Edit": "Edit",
     "Permission:Delete": "Delete",
-    "Distributors": "Distributors",
-    "NewDistributor": "New Distributor",
-    "Actions": "Actions",
-    "SuccessfullyDeleted": "Successfully deleted",
-    "DeleteConfirmationMessage": "Are you sure you want to delete this record?",
-    "Search": "Search",
-    "Pick": "Pick",
-    "SeeAdvancedFilters": "Advanced filters",
     "CompanyName": "Company Name",
     "TaxId": "Tax ID",
-    "Menu:Distributors": "Distributors",
-    "TabTitle:DistributorHQ": "Head Office Distributor",
-    "DisplayName:DistributorHQName": "Head Office Distributor Name",
-    "DisplayName:DistributorHQTaxId": "Head Office Distributor Tax ID"
+    "Menu:Distributors": "Distributors"
   }
 }

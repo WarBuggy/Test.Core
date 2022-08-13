@@ -1,7 +1,15 @@
 {
   "culture": "en",
   "texts": {
-    "SamplePageMessage": "A sample page for the Inquiry module",
-    "Menu:Inquiry": "Inquiry"
+    "NewDistributor": "New Distributor",
+    "Actions": "Actions",
+    "SuccessfullyDeleted": "Successfully deleted",
+    "DeleteConfirmationMessage": "Are you sure you want to delete this record?",
+    "Search": "Search",
+    "Pick": "Pick",
+    "SeeAdvancedFilters": "Advanced filters",
+    "Tab:Distributor:Distributor": "Distributor",
+    "Tab:Distributor:IdentityUsers": "Users",
+    "SelectDisplay:Distributor:Name": "User name"
   }
 }
