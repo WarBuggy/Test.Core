@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Inquiry\src\Inquiry.Domain\Inquiry.Domain.csproj" />
     <ProjectReference Include="..\..\src\TestMDM.Domain\TestMDM.Domain.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Inquiry.InquiryUses;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,6 +34,7 @@ public class Program
                 .AddAppSettingsSecretsJson()
                 .UseAutofac()
                 .UseSerilog();
+            builder.Services.AddSingleton<IInquiryUsersAppService, InquiryUsersAppService>();
             await builder.AddApplicationAsync<CoreIdentityServerModule>();
             var app = builder.Build();
             await app.InitializeApplicationAsync();

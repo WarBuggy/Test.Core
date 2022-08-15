@@ -5,6 +5,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Inquiry.InquiryUsers;
 using Inquiry.Distributors;
+using Volo.Abp.ObjectMapping;
 
 namespace Inquiry.InquiryUses
 {
@@ -19,13 +20,27 @@ namespace Inquiry.InquiryUses
             _inquiryUserRepository = inquiryUserRepository;
         }
 
-        public async Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid identityUserId)
+        public async Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id, IObjectMapper InputObjectMapper = null)
         {
-            var items = await _inquiryUserRepository.GetListDistributorAsync(identityUserId);
-            return new ListResultDto<DistributorDto>
+            var items = await _inquiryUserRepository.GetListDistributorAsync(id);
+            try
             {
-                Items = ObjectMapper.Map<List<Distributor>, List<DistributorDto>>(items),
-            };
+                return new ListResultDto<DistributorDto>
+                {
+                    Items = ObjectMapper.Map<List<Distributor>, List<DistributorDto>>(items),
+                };
+            }
+            catch (NullReferenceException e)
+            {
+                if (InputObjectMapper == null)
+                {
+                    return null;
+                }
+                return new ListResultDto<DistributorDto>
+                {
+                    Items = InputObjectMapper.Map<List<Distributor>, List<DistributorDto>>(items),
+                };
+            }
         }
 
         //public virtual async Task<PagedResultDto<DistributorWithNavPropertiesDto>> GetListAsync(GetDistributorsInput input)

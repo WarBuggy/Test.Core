@@ -45,6 +45,10 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.VirtualFileSystem;
 using Volo.Saas.Host;
+using Volo.Abp.IdentityServer;
+using TestMDM.Distributors;
+using Inquiry;
+using Volo.Abp.AutoMapper;
 
 namespace Test.Core;
 
@@ -58,7 +62,8 @@ namespace Test.Core;
     typeof(AbpAccountPublicApplicationModule),
     typeof(AbpAccountPublicWebImpersonationModule),
     typeof(SaasHostApplicationContractsModule),
-    typeof(CoreEntityFrameworkCoreModule)
+    typeof(CoreEntityFrameworkCoreModule),
+    typeof(AbpAutoMapperModule)
     )]
 public class CoreIdentityServerModule : AbpModule
 {
@@ -119,6 +124,11 @@ public class CoreIdentityServerModule : AbpModule
         Configure<AbpDistributedCacheOptions>(options =>
         {
             options.KeyPrefix = "Core:";
+        });
+
+        Configure<AbpClaimsServiceOptions>(options =>
+        {
+            options.RequestedClaims.AddRange(new[] { DistributorConsts.DistributorClaimName });
         });
 
         var dataProtectionBuilder = context.Services.AddDataProtection().SetApplicationName("Core");
@@ -199,6 +209,12 @@ public class CoreIdentityServerModule : AbpModule
             options.TenantAdminUserName = "admin";
             options.ImpersonationTenantPermission = SaasHostPermissions.Tenants.Impersonation;
             options.ImpersonationUserPermission = IdentityPermissions.Users.Impersonation;
+        });
+
+        context.Services.AddAutoMapperObjectMapper<InquiryApplicationModule>();
+        Configure<AbpAutoMapperOptions>(options =>
+        {
+            options.AddMaps<InquiryApplicationModule>(validate: true);
         });
     }
 

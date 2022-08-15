@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\modules\Inquiry\src\Inquiry.Application\Inquiry.Application.csproj" />
     <ProjectReference Include="..\Test.Core.Domain.Shared\Test.Core.Domain.Shared.csproj" />
   <ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.Domain\TestMDM.Domain.csproj" /><ProjectReference Include="..\..\modules\Inquiry\src\Inquiry.Domain\Inquiry.Domain.csproj" /></ItemGroup>
 
