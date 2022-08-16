@@ -10,6 +10,6 @@ namespace Inquiry.InquiryUses
 {
     public interface IInquiryUsersAppService : IApplicationService
     {
-        Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id, IObjectMapper InputObjectMapper = null);
+        Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id);
     }
 }

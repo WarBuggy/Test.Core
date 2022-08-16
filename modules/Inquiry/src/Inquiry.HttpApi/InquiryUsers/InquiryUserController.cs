@@ -24,9 +24,9 @@ namespace Inquiry.InquiryUsers
 
         [HttpGet]
         [Route("distributor-lookup/{id}")]
-        public Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id, Volo.Abp.ObjectMapping.IObjectMapper InputObjectMapper)
+        public Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id)
         {
-            return _inquiryUsersAppService.GetListDistributorDtoAsync(id, InputObjectMapper);
+            return _inquiryUsersAppService.GetListDistributorDtoAsync(id);
         }
     }
 }

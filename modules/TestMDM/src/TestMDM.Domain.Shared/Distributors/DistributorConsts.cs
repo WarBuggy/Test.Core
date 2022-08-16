@@ -14,7 +14,8 @@ namespace TestMDM.Distributors
         public const int TaxIdMinLength = 1;
         public const int TaxIdMaxLength = 50;
 
-        public const string DistributorClaimName = "distributor";
+        public const string DistributorClaimName = "distributors";
         public const string DistributorClaimSeparator = ";";
+        public const string CurrentDistributorClaimName = "current_distributor";
     }
 }

@@ -97,15 +97,15 @@ public class CoreIdentityServerModule : AbpModule
 
         Configure<AbpAuditingOptions>(options =>
         {
-                //options.IsEnabledForGetRequests = true;
-                options.ApplicationName = "AuthServer";
+            //options.IsEnabledForGetRequests = true;
+            options.ApplicationName = "AuthServer";
         });
 
         if (hostingEnvironment.IsDevelopment())
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                    options.FileSets.ReplaceEmbeddedByPhysical<CoreDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}Test.Core.Domain.Shared", Path.DirectorySeparatorChar)));
+                options.FileSets.ReplaceEmbeddedByPhysical<CoreDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}Test.Core.Domain.Shared", Path.DirectorySeparatorChar)));
                 options.FileSets.ReplaceEmbeddedByPhysical<CoreDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}Test.Core.Domain", Path.DirectorySeparatorChar)));
             });
         }
@@ -128,7 +128,11 @@ public class CoreIdentityServerModule : AbpModule
 
         Configure<AbpClaimsServiceOptions>(options =>
         {
-            options.RequestedClaims.AddRange(new[] { DistributorConsts.DistributorClaimName });
+            options.RequestedClaims.AddRange(new[]
+            {
+                DistributorConsts.DistributorClaimName,
+                DistributorConsts.CurrentDistributorClaimName
+            });
         });
 
         var dataProtectionBuilder = context.Services.AddDataProtection().SetApplicationName("Core");
@@ -180,8 +184,8 @@ public class CoreIdentityServerModule : AbpModule
             )
             .AddMicrosoftAccount(MicrosoftAccountDefaults.AuthenticationScheme, options =>
             {
-                    //Personal Microsoft accounts as an example.
-                    options.AuthorizationEndpoint = "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize";
+                //Personal Microsoft accounts as an example.
+                options.AuthorizationEndpoint = "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize";
                 options.TokenEndpoint = "https://login.microsoftonline.com/consumers/oauth2/v2.0/token";
             })
             .WithDynamicOptions<MicrosoftAccountOptions, MicrosoftAccountHandler>(

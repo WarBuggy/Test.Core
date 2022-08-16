@@ -20,7 +20,7 @@ namespace Inquiry.InquiryUses
             _inquiryUserRepository = inquiryUserRepository;
         }
 
-        public async Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id, IObjectMapper InputObjectMapper = null)
+        public async Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id)
         {
             var items = await _inquiryUserRepository.GetListDistributorAsync(id);
             try
@@ -30,15 +30,21 @@ namespace Inquiry.InquiryUses
                     Items = ObjectMapper.Map<List<Distributor>, List<DistributorDto>>(items),
                 };
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException)
             {
-                if (InputObjectMapper == null)
+                List<DistributorDto> result = new List<DistributorDto>();
+                foreach (var item in items)
                 {
-                    return null;
+                    DistributorDto dto = new DistributorDto();
+                    dto.Id = item.Id;
+                    dto.CompanyName = item.CompanyName;
+                    dto.TaxId = item.TaxId;
+                    result.Add(dto);
                 }
+
                 return new ListResultDto<DistributorDto>
                 {
-                    Items = InputObjectMapper.Map<List<Distributor>, List<DistributorDto>>(items),
+                    Items = result,
                 };
             }
         }
