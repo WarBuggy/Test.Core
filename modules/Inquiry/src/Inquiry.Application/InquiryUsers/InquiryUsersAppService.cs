@@ -23,30 +23,10 @@ namespace Inquiry.InquiryUses
         public async Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id)
         {
             var items = await _inquiryUserRepository.GetListDistributorAsync(id);
-            try
-            {
-                return new ListResultDto<DistributorDto>
+            return new ListResultDto<DistributorDto>
                 {
                     Items = ObjectMapper.Map<List<Distributor>, List<DistributorDto>>(items),
                 };
-            }
-            catch (NullReferenceException)
-            {
-                List<DistributorDto> result = new List<DistributorDto>();
-                foreach (var item in items)
-                {
-                    DistributorDto dto = new DistributorDto();
-                    dto.Id = item.Id;
-                    dto.CompanyName = item.CompanyName;
-                    dto.TaxId = item.TaxId;
-                    result.Add(dto);
-                }
-
-                return new ListResultDto<DistributorDto>
-                {
-                    Items = result,
-                };
-            }
         }
 
         //public virtual async Task<PagedResultDto<DistributorWithNavPropertiesDto>> GetListAsync(GetDistributorsInput input)

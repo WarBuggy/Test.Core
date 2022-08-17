@@ -63,7 +63,7 @@ namespace Test.Core;
     typeof(AbpAccountPublicWebImpersonationModule),
     typeof(SaasHostApplicationContractsModule),
     typeof(CoreEntityFrameworkCoreModule),
-    typeof(AbpAutoMapperModule)
+    typeof(InquiryApplicationModule)
     )]
 public class CoreIdentityServerModule : AbpModule
 {
@@ -213,12 +213,6 @@ public class CoreIdentityServerModule : AbpModule
             options.TenantAdminUserName = "admin";
             options.ImpersonationTenantPermission = SaasHostPermissions.Tenants.Impersonation;
             options.ImpersonationUserPermission = IdentityPermissions.Users.Impersonation;
-        });
-
-        context.Services.AddAutoMapperObjectMapper<InquiryApplicationModule>();
-        Configure<AbpAutoMapperOptions>(options =>
-        {
-            options.AddMaps<InquiryApplicationModule>(validate: true);
         });
     }
 
