@@ -57,8 +57,8 @@ namespace Inquiry.Distributors
         {
             var query = (await _identityUserRepository.GetQueryableAsync())
                 .WhereIf(!string.IsNullOrWhiteSpace(input.Filter),
-                    x => x.Name != null &&
-                         x.Name.Contains(input.Filter));
+                    x => x.Name != null && x.Name.Contains(input.Filter))
+                .Where(x => x.TenantId == CurrentTenant.Id);
 
             var lookupData = await query.PageBy(input.SkipCount, input.MaxResultCount).ToDynamicListAsync<IdentityUser>();
             var totalCount = query.Count();

@@ -54,7 +54,7 @@ namespace Inquiry.Distributors
         {
             var dbContext = await GetDbContextAsync();
 
-            return (dbContext.Set<Distributor>().Include(x => x.IdentityUsers))
+            return (dbContext.Set<Distributor>().Where(x => x.TenantId  == CurrentTenant.Id).Include(x => x.IdentityUsers))
                  .Select(distributor => new DistributorWithNavProperties
                  {
                      Distributor = distributor,
