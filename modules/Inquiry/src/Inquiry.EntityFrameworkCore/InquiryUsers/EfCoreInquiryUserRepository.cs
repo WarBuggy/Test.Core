@@ -3,7 +3,6 @@ using Inquiry.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
@@ -20,16 +19,37 @@ namespace Inquiry.InquiryUsers
 
         }
 
-        public async Task<List<Distributor>> GetListDistributorAsync(Guid identityUserId, CancellationToken cancellationToken = default)
+        public async Task<List<DistributorSelector>> GetListDistributorIdentityUserAsync(Guid identityUserId, CancellationToken cancellationToken = default)
         {
             var dbContext = await GetDbContextAsync();
             var distributorIdentityUsers = dbContext.Set<DistributorIdentityUser>().Where(diu => diu.IdentityUserId == identityUserId);
             var distributors = dbContext.Set<Distributor>();
 
-            return (from distributorIdentityUser in distributorIdentityUsers
-                         join distributor in distributors
-                         on distributorIdentityUser.DistributorId equals distributor.Id
-                         select distributor).ToList();
+            return (from distributor in distributors
+                    join distributorIdentityUser in distributorIdentityUsers
+                    on distributor.Id equals distributorIdentityUser.DistributorId
+                    select new DistributorSelector() { 
+                        DistributorId = distributor.Id, 
+                        IsActive = distributorIdentityUser.IsActive, 
+                        CompanyName = distributor.CompanyName,
+                    }).ToList();
+        }
+
+        public async Task SetActiveDistributor(Guid distributorId, Guid identityUserId, CancellationToken cancellation = default)
+        {
+            var dbContext = await GetDbContextAsync();
+            var distributorIdentityUsers = dbContext.Set<DistributorIdentityUser>().Where(diu => diu.IdentityUserId == identityUserId);
+            distributorIdentityUsers.ToList().ForEach(diu =>
+            {
+                if (diu.DistributorId != distributorId)
+                {
+                    diu.IsActive = false;
+                }
+                else
+                {
+                    diu.IsActive = true;
+                }
+            });
         }
     }
 }

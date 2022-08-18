@@ -20,14 +20,22 @@ namespace Inquiry.InquiryUses
             _inquiryUserRepository = inquiryUserRepository;
         }
 
-        public async Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id)
+        public async Task<ListResultDto<DistributorSelectorDto>> GetListDistributorIdentityUserAsync(Guid id)
         {
-            var items = await _inquiryUserRepository.GetListDistributorAsync(id);
-            return new ListResultDto<DistributorDto>
-                {
-                    Items = ObjectMapper.Map<List<Distributor>, List<DistributorDto>>(items),
-                };
+            var items = await _inquiryUserRepository.GetListDistributorIdentityUserAsync(id);
+            return new ListResultDto<DistributorSelectorDto>
+            {
+                Items = ObjectMapper.Map<List<DistributorSelector>, List<DistributorSelectorDto>>(items),
+            };
+
         }
+
+        public async Task SetActiveDistributor(Guid distributorId, Guid identityUserId)
+        {
+            await _inquiryUserRepository.SetActiveDistributor(distributorId, identityUserId);
+        }
+
+
 
         //public virtual async Task<PagedResultDto<DistributorWithNavPropertiesDto>> GetListAsync(GetDistributorsInput input)
         //{

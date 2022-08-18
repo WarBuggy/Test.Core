@@ -14,7 +14,7 @@ public class InquiryApplicationAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
         CreateMap<Distributor, DistributorDto>();
-
+        CreateMap<DistributorSelector, DistributorSelectorDto>();
         CreateMap<DistributorWithNavProperties, DistributorWithNavPropertiesDto>();
         CreateMap<IdentityUser, LookupDto<Guid>>().ForMember(dest => dest.DisplayName, opt => opt.MapFrom(src => src.Name));
     }

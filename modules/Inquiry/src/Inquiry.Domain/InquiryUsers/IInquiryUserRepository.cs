@@ -10,7 +10,10 @@ namespace Inquiry.InquiryUsers
 {
     public interface IInquiryUserRepository : IRepository<IdentityUser, Guid>
     {
-        Task<List<Distributor>> GetListDistributorAsync(Guid identityUserId,
+        Task<List<DistributorSelector>> GetListDistributorIdentityUserAsync(Guid identityUserId,
                   CancellationToken cancellationToken = default);
+
+        Task SetActiveDistributor(Guid distributorId, Guid identityUserId, 
+            CancellationToken cancellation = default);
     }
 }

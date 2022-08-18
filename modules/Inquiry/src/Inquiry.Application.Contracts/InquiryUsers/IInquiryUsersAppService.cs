@@ -1,15 +1,15 @@
-﻿using Inquiry.Shared;
-using System;
+﻿using System;
 using System.Threading.Tasks;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Inquiry.Distributors;
-using Volo.Abp.ObjectMapping;
+using Volo.Abp.Application.Dtos;
 
 namespace Inquiry.InquiryUses
 {
     public interface IInquiryUsersAppService : IApplicationService
     {
-        Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id);
+        Task<ListResultDto<DistributorSelectorDto>> GetListDistributorIdentityUserAsync(Guid id);
+
+        Task SetActiveDistributor(Guid distributorId, Guid identityUserId);
     }
 }

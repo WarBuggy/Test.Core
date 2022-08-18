@@ -1,6 +1,7 @@
 ﻿using Inquiry;
 using Inquiry.Distributors;
 using Inquiry.InquiryUses;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -31,26 +32,28 @@ namespace Test.Core
                 return;
             }
             var inquiryService = context.ServiceProvider.GetRequiredService<IInquiryUsersAppService>();
-            var distributor = await inquiryService.GetListDistributorDtoAsync(new Guid(userId.Value));
+            var distributorSelector = await inquiryService.GetListDistributorIdentityUserAsync(new Guid(userId.Value));
             string distributorsClaimString = "";
             string currentDistributorClaimString = "";
-            if (distributor != null && distributor.Items.Count > 0)
+            if (distributorSelector != null && distributorSelector.Items.Count > 0)
             {
                 List<string> ClaimValues = new List<string>();
-                foreach (var i in distributor.Items)
+                foreach (var i in distributorSelector.Items)
                 {
-                    ClaimValues.Add(i.Id.ToString());
+                    ClaimValues.Add(i.DistributorId.ToString());
+                    if (i.IsActive)
+                    {
+                        currentDistributorClaimString = i.DistributorId.ToString();
+                    }
                 }
                 distributorsClaimString = string.Join(DistributorConsts.DistributorClaimSeparator, ClaimValues.ToArray());
-                currentDistributorClaimString = GetDefaultDistributor(distributor.Items).Id.ToString();
+            }
+            if (currentDistributorClaimString.IsNullOrEmpty())
+            {
+                currentDistributorClaimString = distributorSelector.Items.First().DistributorId.ToString();
             }
             identity.AddIfNotContains(new Claim(DistributorConsts.CurrentDistributorClaimName, currentDistributorClaimString));
             identity.AddIfNotContains(new Claim(DistributorConsts.DistributorClaimName, distributorsClaimString));
-        }
-
-        private static DistributorDto GetDefaultDistributor(IReadOnlyCollection<DistributorDto> distributors)
-        {
-            return distributors.FirstOrDefault();
         }
     }
 

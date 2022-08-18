@@ -24,9 +24,16 @@ namespace Inquiry.InquiryUsers
 
         [HttpGet]
         [Route("distributor-lookup/{id}")]
-        public Task<ListResultDto<DistributorDto>> GetListDistributorDtoAsync(Guid id)
+        public Task<ListResultDto<DistributorSelectorDto>> GetListDistributorIdentityUserAsync(Guid id)
         {
-            return _inquiryUsersAppService.GetListDistributorDtoAsync(id);
+            return _inquiryUsersAppService.GetListDistributorIdentityUserAsync(id);
+        }
+
+        [HttpGet]
+        [Route("set-active-distributor/{distributorId}/{identityUserId}")]
+        public Task SetActiveDistributor(Guid distributorId, Guid identityUserId)
+        {
+            return _inquiryUsersAppService.SetActiveDistributor(distributorId, identityUserId);
         }
     }
 }
