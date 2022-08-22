@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Inquiry\src\Inquiry.Application.Contracts\Inquiry.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\src\TestMDM.Application\TestMDM.Application.csproj" />
     <ProjectReference Include="..\TestMDM.Domain.Tests\TestMDM.Domain.Tests.csproj" />
   </ItemGroup>

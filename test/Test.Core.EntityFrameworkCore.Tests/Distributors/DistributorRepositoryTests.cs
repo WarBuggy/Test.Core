@@ -1,3 +1,4 @@
+using Inquiry.Distributors;
 using Shouldly;
 using System;
 using System.Linq;

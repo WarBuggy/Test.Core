@@ -4,6 +4,7 @@ using Shouldly;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories;
 using Xunit;
+using Inquiry.Distributors;
 
 namespace TestMDM.Distributors
 {
@@ -27,8 +28,8 @@ namespace TestMDM.Distributors
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("a45f1928-f55e-4827-bbd2-e5c63704c58c")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("5b636648-472a-412c-bd87-cd385268ca71")).ShouldBe(true);
+            result.Items.Any(x => x.Distributor.Id == Guid.Parse("a45f1928-f55e-4827-bbd2-e5c63704c58c")).ShouldBe(true);
+            result.Items.Any(x => x.Distributor.Id == Guid.Parse("5b636648-472a-412c-bd87-cd385268ca71")).ShouldBe(true);
         }
 
         [Fact]

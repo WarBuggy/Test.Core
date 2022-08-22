@@ -5,18 +5,19 @@ using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories;
 using Xunit;
 using TestMDM.Distributors;
+using Inquiry.Distributors;
 
 namespace Test.Core.Distributors
 {
     public class DistributorsAppServiceTests : CoreApplicationTestBase
     {
         private readonly IDistributorsAppService _distributorsAppService;
-        private readonly IRepository<Distributor, Guid> _distributorRepository;
+        private readonly IRepository<Inquiry.Distributors.Distributor, Guid> _distributorRepository;
 
         public DistributorsAppServiceTests()
         {
             _distributorsAppService = GetRequiredService<IDistributorsAppService>();
-            _distributorRepository = GetRequiredService<IRepository<Distributor, Guid>>();
+            _distributorRepository = GetRequiredService<IRepository<Inquiry.Distributors.Distributor, Guid>>();
         }
 
         [Fact]
@@ -28,8 +29,8 @@ namespace Test.Core.Distributors
             // Assert
             result.TotalCount.ShouldBe(2);
             result.Items.Count.ShouldBe(2);
-            result.Items.Any(x => x.Id == Guid.Parse("16d3bcff-10c4-46f6-8478-c8b08f3cb7ea")).ShouldBe(true);
-            result.Items.Any(x => x.Id == Guid.Parse("fc1ceccd-4d10-43d6-a940-833eecba1d78")).ShouldBe(true);
+            result.Items.Any(x => x.Distributor.Id == Guid.Parse("16d3bcff-10c4-46f6-8478-c8b08f3cb7ea")).ShouldBe(true);
+            result.Items.Any(x => x.Distributor.Id == Guid.Parse("fc1ceccd-4d10-43d6-a940-833eecba1d78")).ShouldBe(true);
         }
 
         [Fact]
