@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Test.Core.Web.Components.Toolbar.DistributorSelector;
 using Test.Core.Web.Components.Toolbar.Impersonation;
 using Test.Core.Web.Components.Toolbar.LoginLink;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Toolbars;
@@ -16,9 +17,14 @@ public class CoreToolbarContributor : IToolbarContributor
             return Task.CompletedTask;
         }
 
-        if (!context.ServiceProvider.GetRequiredService<ICurrentUser>().IsAuthenticated)
+        ICurrentUser currentUser = context.ServiceProvider.GetRequiredService<ICurrentUser>();
+        if (!currentUser.IsAuthenticated)
         {
             context.Toolbar.Items.Add(new ToolbarItem(typeof(LoginLinkViewComponent)));
+        }
+        else if (currentUser.TenantId != null)
+        {
+            context.Toolbar.Items.Insert(0, new ToolbarItem(typeof(DistributorSelectorViewComponent)));
         }
 
         if (context.ServiceProvider.GetRequiredService<ICurrentUser>().FindImpersonatorUserId() != null)

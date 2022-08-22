@@ -55,3 +55,18 @@
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script>
+        function onChangeOfDistributorSelector(target) {
+            let id = target.value;
+            console.log(id);
+            abp.ajax({
+                type: 'GET',
+                url: `api/distributors-selector/set-current-distributor/${id}`,
+            }).then(function (result) {
+                console.log(result);
+            });
+        }
+    </script>
+}

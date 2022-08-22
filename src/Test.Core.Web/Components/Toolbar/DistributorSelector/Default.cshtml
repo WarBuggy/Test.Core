@@ -1,0 +1,28 @@
+﻿@using Inquiry.Distributors
+@using Test.Core.Web.Components.Toolbar.DistributorSelector
+@using Volo.Abp.Users
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Test.Core.Localization
+@using TestMDM.Localization
+@using Test.Core.Web.Controllers;
+@using Test.Core;
+@model List<DistributorSelectorDto>;
+@inject IHtmlLocalizer<CoreResource> L
+@inject IHtmlLocalizer<TestMDMResource> LTestMDM
+
+<div class="btn" style="display: grid; grid-template-columns: auto 1fr; align-items: center; justify-items: left;">
+    <span style="font-weight: bold; padding-right: 10px; cursor: default; margin-left: 10px;">@LTestMDM["Distributor"]</span>
+    <select class="auto-complete-select" style="cursor: pointer;" onchange="onChangeOfDistributorSelector(this)">
+        @foreach (var distributorSelectorDto in Model)
+        {
+            if (distributorSelectorDto.IsActive)
+            {
+                <option selected value="@distributorSelectorDto.DistributorId">@distributorSelectorDto.CompanyName</option>
+            }
+            else
+            {
+                <option value="@distributorSelectorDto.DistributorId">@distributorSelectorDto.CompanyName</option>
+            }
+        }
+    </select>
+</div>

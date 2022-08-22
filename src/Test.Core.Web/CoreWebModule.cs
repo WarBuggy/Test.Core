@@ -58,6 +58,8 @@ using Volo.Abp.VirtualFileSystem;
 using Volo.Saas.Host;
 using TestMDM.Web;
 using Inquiry.Web;
+using Volo.Abp.Identity.AspNetCore;
+using Volo.Abp.Identity;
 
 namespace Test.Core.Web;
 
@@ -86,7 +88,9 @@ namespace Test.Core.Web;
     )]
 [DependsOn(typeof(TestMDMWebModule))]
 [DependsOn(typeof(InquiryWebModule))]
-    public class CoreWebModule : AbpModule
+//[DependsOn(typeof(CoreIdentityServerModule))]
+//[DependsOn(typeof(AbpIdentityAspNetCoreModule))]
+public class CoreWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
@@ -122,6 +126,9 @@ namespace Test.Core.Web;
         ConfigureSwaggerServices(context.Services);
         ConfigureMultiTenancy();
         ConfigureBackgroundJobs();
+
+        context.Services.AddAssemblyOf<AbpIdentityDomainModule>();
+        context.Services.AddAssemblyOf<AbpIdentityAspNetCoreModule>();
     }
 
     private void ConfigureBackgroundJobs()
@@ -218,7 +225,7 @@ namespace Test.Core.Web;
                 var previousOnRedirectToIdentityProvider = options.Events.OnRedirectToIdentityProvider;
                 options.Events.OnRedirectToIdentityProvider = async ctx =>
                 {
-                        // Intercept the redirection so the browser navigates to the right URL in your host
+                    // Intercept the redirection so the browser navigates to the right URL in your host
                     ctx.ProtocolMessage.IssuerAddress = configuration["AuthServer:Authority"].EnsureEndsWith('/') + "connect/authorize";
 
                     if (previousOnRedirectToIdentityProvider != null)
@@ -229,7 +236,7 @@ namespace Test.Core.Web;
                 var previousOnRedirectToIdentityProviderForSignOut = options.Events.OnRedirectToIdentityProviderForSignOut;
                 options.Events.OnRedirectToIdentityProviderForSignOut = async ctx =>
                 {
-                        // Intercept the redirection for signout so the browser navigates to the right URL in your host
+                    // Intercept the redirection for signout so the browser navigates to the right URL in your host
                     ctx.ProtocolMessage.IssuerAddress = configuration["AuthServer:Authority"].EnsureEndsWith('/') + "connect/endsession";
 
                     if (previousOnRedirectToIdentityProviderForSignOut != null)
@@ -352,3 +359,22 @@ namespace Test.Core.Web;
         app.UseConfiguredEndpoints();
     }
 }
+
+//Hi everyone! Hope you guys are having a great days.
+//I having problem injecting SignInManager into my controller. I have tried everything and kept getting autofac errors. It seems like autofac does not know about SignInManager.
+//I downloaded the example about Custom 
+
+
+// abp new Page -t app -u mvc --tiered -m none --database-provider ef --database-management-system PostgreSQL --connection-string="Host=localhost;Port=5432;Database=Page;User ID=postgres;Password=4#Vu%Ur#C#Ze2F;" -csf 
+
+/*
+Thank you for quick reply @FragKing#6822 ... I tried your suggestion (can't believe I couldn't find the support post you included).
+I 
+
+Hello everyone! Could someone please help and point me to the direction on how to inject AbpSignInManager (or Microsoft SignInManager) in a tiered app template?
+It seems that autofac does not recognize any of the sign in manager out of the box. I tried to add [DependsOn(typeof(AbpIdentityAspNetCoreModule))] (thanks FragKing!) to my ProjectNameWebModule.cs, but then sign in and sign out does not work properly. Only when added in ProjectNameIdentityServerModule.cs, log in and log out might work properly (not tested yet).
+But even then, autofac still cannot recognize the sign in managers.
+I have tried this with an new app template, tiered. Just created one and try to inject AbpSignInManager in any of the controller. Autofac should start complaining right away.
+I am trying to sign out and sign in a user by code. Please help me with this problem if you can! Thanks in advance!
+
+*/
