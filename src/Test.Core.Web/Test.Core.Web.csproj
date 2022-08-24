@@ -19,33 +19,33 @@
 		<PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
 		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="6.0.5" />
 		<ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.Web\TestMDM.Web.csproj" />
-		 <ProjectReference Include="..\..\modules\Inquiry\src\Inquiry.Web\Inquiry.Web.csproj" /> 
+		<ProjectReference Include="..\..\modules\Inquiry\src\Inquiry.Web\Inquiry.Web.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.Autofac" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.Client" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.Http.Client.IdentityModel.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.Http.Client.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.Swashbuckle" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.FeatureManagement.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.AuditLogging.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.Identity.Pro.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.Account.Pro.Admin.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.Account.Pro.Public.Web.Impersonation" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.LeptonTheme.Management.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.IdentityServer.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.LanguageManagement.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Saas.Host.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Lepton" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.TextTemplateManagement.Web" Version="5.3.3" />
-		<PackageReference Include="Volo.Abp.Gdpr.Web" Version="5.3.3" />
+		<PackageReference Include="Volo.Abp.Autofac" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.Client" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.Http.Client.IdentityModel.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.Http.Client.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.Swashbuckle" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.FeatureManagement.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.AuditLogging.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.Identity.Pro.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.Account.Pro.Admin.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.Account.Pro.Public.Web.Impersonation" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.LeptonTheme.Management.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.IdentityServer.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.LanguageManagement.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Saas.Host.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Lepton" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.TextTemplateManagement.Web" Version="5.3.4" />
+		<PackageReference Include="Volo.Abp.Gdpr.Web" Version="5.3.4" />
 		<ProjectReference Include="..\Test.Core.HttpApi.Client\Test.Core.HttpApi.Client.csproj" />
 		<ProjectReference Include="..\Test.Core.HttpApi\Test.Core.HttpApi.csproj" />
 		<!--<ProjectReference Include="..\Test.Core.IdentityServer\Test.Core.IdentityServer.csproj" />-->
-		<PackageReference Include="Volo.Abp.Identity.AspNetCore" Version="5.3.3" />
+		<!--<PackageReference Include="Volo.Abp.Identity.AspNetCore" Version="5.3.3" />-->
 		<!--<PackageReference Include="Volo.Abp.Identity.Pro.Domain" Version="5.3.3" />-->
 		<!--<ProjectReference Include="..\Test.Core.Application\Test.Core.Application.csproj" />
 		<ProjectReference Include="..\Test.Core.IdentityServer\Test.Core.IdentityServer.csproj" />

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -12,19 +12,19 @@
   <ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.HttpApi.Client\TestMDM.HttpApi.Client.csproj" /><ProjectReference Include="..\..\modules\Inquiry\src\Inquiry.HttpApi.Client\Inquiry.HttpApi.Client.csproj" /></ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Saas.Host.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.AuditLogging.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.Identity.Pro.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.Account.Pro.Admin.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.Account.Pro.Public.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.IdentityServer.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.LanguageManagement.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.LeptonTheme.Management.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.TextTemplateManagement.HttpApi.Client" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.Gdpr.HttpApi.Client" Version="5.3.3" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Saas.Host.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.AuditLogging.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.Identity.Pro.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.Account.Pro.Admin.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.Account.Pro.Public.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.IdentityServer.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.LanguageManagement.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.LeptonTheme.Management.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.TextTemplateManagement.HttpApi.Client" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.Gdpr.HttpApi.Client" Version="5.3.4" />
   </ItemGroup>
 
 	<ItemGroup>

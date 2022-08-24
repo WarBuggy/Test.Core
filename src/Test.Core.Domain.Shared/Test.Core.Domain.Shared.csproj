@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -9,20 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.IdentityServer.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.BackgroundJobs.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.BlobStoring.Database.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.Identity.Pro.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.LanguageManagement.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Saas.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.TextTemplateManagement.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.LeptonTheme.Management.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.Gdpr.Domain.Shared" Version="5.3.3" />
-    <PackageReference Include="Volo.Abp.GlobalFeatures" Version="5.3.3" />
+    <PackageReference Include="Volo.Abp.IdentityServer.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.BlobStoring.Database.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.Identity.Pro.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.LanguageManagement.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Saas.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.TextTemplateManagement.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.LeptonTheme.Management.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.Gdpr.Domain.Shared" Version="5.3.4" />
+    <PackageReference Include="Volo.Abp.GlobalFeatures" Version="5.3.4" />
   <ProjectReference Include="..\..\modules\TestMDM\src\TestMDM.Domain.Shared\TestMDM.Domain.Shared.csproj" /><ProjectReference Include="..\..\modules\Inquiry\src\Inquiry.Domain.Shared\Inquiry.Domain.Shared.csproj" /></ItemGroup>
 
   <ItemGroup>

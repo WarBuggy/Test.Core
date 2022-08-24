@@ -3,7 +3,7 @@
   "name": "my-app-identityserver",
   "private": true,
   "dependencies": {
-    "@volo/abp.aspnetcore.mvc.ui.theme.lepton": "^5.3.3",
-    "@volo/account": "^5.3.3"
+    "@volo/abp.aspnetcore.mvc.ui.theme.lepton": "~5.3.4",
+    "@volo/account": "~5.3.4"
   }
 }

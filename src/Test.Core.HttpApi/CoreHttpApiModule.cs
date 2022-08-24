@@ -19,24 +19,24 @@ using Inquiry;
 
 namespace Test.Core;
 
- [DependsOn(
-    typeof(CoreApplicationContractsModule),
-    typeof(AbpIdentityHttpApiModule),
-    typeof(AbpPermissionManagementHttpApiModule),
-    typeof(AbpFeatureManagementHttpApiModule),
-    typeof(AbpSettingManagementHttpApiModule),
-    typeof(AbpAuditLoggingHttpApiModule),
-    typeof(AbpIdentityServerHttpApiModule),
-    typeof(AbpAccountAdminHttpApiModule),
-    typeof(LanguageManagementHttpApiModule),
-    typeof(SaasHostHttpApiModule),
-    typeof(LeptonThemeManagementHttpApiModule),
-    typeof(AbpGdprHttpApiModule),
-    typeof(TextTemplateManagementHttpApiModule)
-    )]
+[DependsOn(
+   typeof(CoreApplicationContractsModule),
+   typeof(AbpIdentityHttpApiModule),
+   typeof(AbpPermissionManagementHttpApiModule),
+   typeof(AbpFeatureManagementHttpApiModule),
+   typeof(AbpSettingManagementHttpApiModule),
+   typeof(AbpAuditLoggingHttpApiModule),
+   typeof(AbpIdentityServerHttpApiModule),
+   typeof(AbpAccountAdminHttpApiModule),
+   typeof(LanguageManagementHttpApiModule),
+   typeof(SaasHostHttpApiModule),
+   typeof(LeptonThemeManagementHttpApiModule),
+   typeof(AbpGdprHttpApiModule),
+   typeof(TextTemplateManagementHttpApiModule)
+   )]
 [DependsOn(typeof(TestMDMHttpApiModule))]
-    [DependsOn(typeof(InquiryHttpApiModule))]
-    public class CoreHttpApiModule : AbpModule
+[DependsOn(typeof(InquiryHttpApiModule))]
+public class CoreHttpApiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
